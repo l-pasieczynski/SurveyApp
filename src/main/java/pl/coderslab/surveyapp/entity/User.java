@@ -26,7 +26,7 @@ public class User {
     @Column(nullable = false)
     @Email
     private String email;
-    private int enabled;
+    private boolean active;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
