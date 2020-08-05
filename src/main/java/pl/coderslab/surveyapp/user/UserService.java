@@ -1,10 +1,10 @@
 package pl.coderslab.surveyapp.user;
 
-import pl.coderslab.surveyapp.entity.User;
+import pl.coderslab.surveyapp.entity.Participant;
 
 interface UserService {
 
-    User findByUsername(String username);
+    Participant findByUsername(String username);
 
-    void saveUser(User user);
+    void saveUser(Participant participant);
 }
