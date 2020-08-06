@@ -1,7 +1,9 @@
-package pl.coderslab.surveyapp.entity;
+package pl.coderslab.surveyapp.question;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.surveyapp.answer.Answer;
+import pl.coderslab.surveyapp.survey.Survey;
 
 import javax.persistence.*;
 

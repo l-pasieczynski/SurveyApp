@@ -1,7 +1,9 @@
-package pl.coderslab.surveyapp.entity;
+package pl.coderslab.surveyapp.answer;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.surveyapp.question.Question;
+import pl.coderslab.surveyapp.user.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ public class Answer {
     @ManyToOne
     private Question question;
     @ManyToOne
-    private Participant participant;
+    private User user;
 
     public Answer() {
     }

@@ -1,22 +1,21 @@
 package pl.coderslab.surveyapp.user;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import pl.coderslab.surveyapp.entity.Participant;
+import pl.coderslab.surveyapp.user.User;
 
 import java.util.Collection;
 
-public class CurrentUser extends User {
+public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
-    private final Participant participant;
+    private final User user;
 
-    public CurrentUser(String username, String password, Collection<? extends GrantedAuthority> authorities, Participant participant){
+    public CurrentUser(String username, String password, Collection<? extends GrantedAuthority> authorities, User user){
         super(username, password, authorities);
-        this.participant = participant;
+        this.user = user;
     }
 
-    public Participant getParticipant(){
-        return participant;
+    public User getUser(){
+        return user;
     }
 
 }

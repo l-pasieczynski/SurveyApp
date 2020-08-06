@@ -1,8 +1,9 @@
-package pl.coderslab.surveyapp.survey;
+package pl.coderslab.surveyapp.answer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface QuestionRepository extends JpaRepository<Question, Long> {
+interface AnswerRepository extends JpaRepository<Answer, Long>
+{
 }

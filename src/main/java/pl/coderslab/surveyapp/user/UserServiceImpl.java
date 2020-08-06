@@ -2,9 +2,8 @@ package pl.coderslab.surveyapp.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.surveyapp.entity.Role;
-import pl.coderslab.surveyapp.entity.RoleRepository;
-import pl.coderslab.surveyapp.entity.Participant;
+import pl.coderslab.surveyapp.role.Role;
+import pl.coderslab.surveyapp.role.RoleRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,17 +22,40 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Participant findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public void saveUser(Participant participant) {
-        participant.setPassword(passwordEncoder.encode(participant.getPassword()));
-        participant.setActive(true);
+    public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(true);
         Role userRole = roleRepository.findByName("ROLE_USER");
-        participant.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(participant);
-
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
     }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.getOne(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.delete(findById(id));
+    }
+
+    @Override
+    public void fillUserData(User user, Long id) {
+        User currentUser = userRepository.getOne(id);
+        currentUser.toBuilder()
+                .gender(user.getGender())
+                .dateOfBirth(user.getDateOfBirth())
+                .education(user.getEducation())
+                .placeOfLiving(user.getPlaceOfLiving())
+                .build();
+        userRepository.save(currentUser);
+    }
+
+
 }

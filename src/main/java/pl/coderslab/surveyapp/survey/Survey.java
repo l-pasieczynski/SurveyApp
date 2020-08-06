@@ -1,16 +1,17 @@
-package pl.coderslab.surveyapp.entity;
+package pl.coderslab.surveyapp.survey;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.surveyapp.question.Question;
+import pl.coderslab.surveyapp.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Survey {
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<Question>();
     @ManyToMany
-    private List<Participant> participant;
+    private List<User> user;
 
     @PrePersist
     public void create() {

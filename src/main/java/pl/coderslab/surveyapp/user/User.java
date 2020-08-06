@@ -1,9 +1,9 @@
-package pl.coderslab.surveyapp.entity;
+package pl.coderslab.surveyapp.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.surveyapp.role.Role;
+import pl.coderslab.surveyapp.survey.Survey;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,9 +15,12 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Setter
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
+@Setter(value = AccessLevel.PACKAGE)
 @Getter
-public class Participant {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +51,4 @@ public class Participant {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @Builder
-    public Participant() {
-    }
 }

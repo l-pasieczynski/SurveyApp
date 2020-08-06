@@ -1,4 +1,4 @@
-package pl.coderslab.surveyapp.entity;
+package pl.coderslab.surveyapp.role;
 
 import lombok.Getter;
 import lombok.Setter;
