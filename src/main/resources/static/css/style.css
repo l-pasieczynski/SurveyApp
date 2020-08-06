@@ -1,0 +1,115 @@
+root {
+    --link-color: #ff6600;
+    --light-link-color: #fffffa;
+    --background-color: #4b4c4a;
+    --lighter-background-color: #5a615f;
+    --lighter-text-color: #9fa292;
+    --dark-text: #000000;
+    --blue: #007bff;
+    --yellow: #ffc107;
+    --green: #1e7e34;
+    font-size: 16px;
+}
+
+* {
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    background: var(--light-link-color) ;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+.bg-light {
+    background: #EAEAEA;
+}
+
+.noPadding {
+    padding: 0;
+}
+.noMargin {
+    margin: 0;
+}
+.center {
+    text-align: center;
+}
+.btn-color {
+    background-color: var(--link-color);
+    color: var(--light-link-color);
+    font-weight: 600;
+    font-size: 20px;
+    padding: 8px 18px;
+}
+.btn-color a {
+    text-decoration: none;
+    color: var(--light-link-color);
+}
+
+.btn-color:hover {
+    opacity: .8;
+}
+.label-size {
+    font-size: 1.4rem;
+    color: var(--background-color);
+}
+hr {
+    border: 0;
+    margin-bottom: 4px;
+    clear:both;
+    display:block;
+    width: 100%;
+    background-color:var(--background-color);
+    height: 1px;
+}
+
+.border-dashed{
+    border: .5px dashed  var(--lighter-background-color);
+    background: var(--light-link-color);
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+.btn-position{
+    position: center;
+
+}
+.btn-visible{
+    visibility: hidden;
+}
+#visible{
+    position: inherit;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+}
+.carousel .carousel-inner{
+    height:500px
+}
+.carousel-inner .carousel-item img{
+    min-height:200px;
+//prevent it from stretch in screen size < than 768px
+object-fit:cover
+}
+
+@media(max-width:768px){
+    .carousel .carousel-inner{
+    //prevent it from adding a white space between carousel and container elements
+    height:auto
+    }
+}
+
+
