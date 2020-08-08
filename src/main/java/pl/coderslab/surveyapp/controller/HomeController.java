@@ -1,10 +1,12 @@
-package pl.coderslab.surveyapp.user;
+package pl.coderslab.surveyapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
+import pl.coderslab.surveyapp.user.User;
+import pl.coderslab.surveyapp.user.UserService;
 
 @Controller
 @RequestMapping("/")
