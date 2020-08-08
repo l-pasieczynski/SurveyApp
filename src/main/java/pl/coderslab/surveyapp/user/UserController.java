@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-     private final UserFacade userFacade;
+    private final UserService userService;
 
-    public UserController(UserFacade userFacade) {
-        this.userFacade = userFacade;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PutMapping("edit/{id}")
     public void editUser (@RequestBody User user, @PathVariable Long id) {
-        userFacade.fillUserData(user, id);
+        userService.fillUserData(user, id);
     }
 
     @DeleteMapping("delete/{id}")
     public void deleteUser(@PathVariable Long id) {
-        userFacade.deleteUser(id);
+        userService.delete(id);
     }
 }
 

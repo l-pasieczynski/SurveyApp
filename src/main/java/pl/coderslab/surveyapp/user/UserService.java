@@ -1,6 +1,6 @@
 package pl.coderslab.surveyapp.user;
 
-interface UserService {
+public interface UserService {
 
     User findByUsername(String username);
 
