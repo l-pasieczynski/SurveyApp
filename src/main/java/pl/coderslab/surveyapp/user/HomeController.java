@@ -20,7 +20,7 @@ class HomeController {
 
     @GetMapping
     public String home() {
-        return "home";
+        return "index.html";
     }
 
     @GetMapping("register")
