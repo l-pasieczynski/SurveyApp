@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header>
+<div th:include="fragments/header.html"></div>
+</header>
+
+
+<body>
+
+<div class="content">
+    <h1>Say Hello</h1>
+    <h2>We are waiting to hear from you</h2>
+</div>
+
+<div class="contact-form content">
+    <form id="contact-form" method="post" action="">
+        <input name="name" type="text" class="form" placeholder="Your name" required><br>
+        <input name="email" type="email" class="form" placeholder="Your email" required><br>
+        <textarea name="message" class="form" placeholder="Message" rows="5" required></textarea><br>
+
+        <input type="submit" class="form submit" value="SEND MESSAGE">
+    </form>
+</div>
+</body>
+
+
+<div th:include="fragments/footer.html"></div>
