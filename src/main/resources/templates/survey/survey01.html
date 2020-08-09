@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="fragments/header">
+
+
+</header>
+<body>
+<h1> User Personal Survey </h1>
+<form>
+    <div class="form-group form-size">
+        <label for="email">Your email</label>
+        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <label for="name">Your name</label>
+        <input class="form-control" id="name" placeholder="write your name">
+    </div>
+
+    <div><label>Gender</label></div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="genderM" name="gender" value="M">
+        <label class="form-check-label" for="genderM">male</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="genderF" name="gender" value="F">
+        <label class="form-check-label" for="genderF">female</label>
+    </div><br><br>
+
+    <div class="form-group form-size">
+        <label for="dateOfBirth">Enter your date of birth</label>
+        <input type="date" class="form-control" id="dateOfBirth">
+    </div>
+
+    <div><label>Place of living</label></div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="village" name="living" value="village">
+        <label class="form-check-label" for="village">village</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="town" name="living" value="town">
+        <label class="form-check-label" for="town">town</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="city" name="living" value="city">
+        <label class="form-check-label" for="city">city</label>
+    </div>
+    <div>
+        <input class="btn btn-active" type="submit">
+    </div>
+
+
+
+</form>
+
+
+</body>
+</html>
