@@ -111,5 +111,8 @@ object-fit:cover
     height:auto
     }
 }
+.form-size{
+    width: 50%;
+}
 
 
