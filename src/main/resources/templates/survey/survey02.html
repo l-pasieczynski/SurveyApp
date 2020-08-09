@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="fragments/header">
+
+
+</header>
+<body>
+<div class="center">
+    <h1> Welcome to our survey </h1>
+    <p class="title-survey">Your favorite food</p>
+</div>
+
+<form class="center add-form">
+
+    <div><label><h3>Your favorite fruit</h3> </label></div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="apple" name="fruits" value="apple">
+        <label class="form-check-label" for="apple">apple</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="orange" name="fruits" value="orange">
+        <label class="form-check-label" for="orange">orange</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="strawberry" name="fruits" value="strawberry">
+        <label class="form-check-label" for="strawberry">strawberry</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="respberry" name="fruits" value="respberry">
+        <label class="form-check-label" for="respberry">respberry</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="banana" name="fruits" value="banana">
+        <label class="form-check-label" for="banana">banana</label>
+    </div>
+    <div>
+        <label class="my-1 mr-2" for="meals"><h3>Your favourit meals</h3></label>
+    <select class="custom-select my-1 mr-sm-2" id="meals" name="meals">
+        <option selected>Choose...</option>
+        <option value="pizza">pizza</option>
+        <option value="spaghetti">spaghetti</option>
+        <option value="fish">fish</option>
+        <option value="salad">salad</option>
+        <option value="seafood">seafood</option>
+    </select>
+    </div>
+    <div>
+        <label class="my-1 mr-2" for="drinks"><h3>Your favourit drinks</h3></label>
+        <select class="custom-select my-1 mr-sm-2" id="drinks" name="drinks">
+            <option selected>Choose...</option>
+            <option value="coffee">coffee</option>
+            <option value="tea">tea</option>
+            <option value="beer">beer</option>
+            <option value="wine">wine</option>
+            <option value="water">water</option>
+            <option value="vodka">vodka</option>
+            <option value="smoothie">smoothie</option>
+        </select>
+    </div>
+    <div>
+        <h3> Choose your favorite pizza`s ingredients  </h3>
+    </div>
+    <div>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="chees" name="ingredients" value="chees">
+                <label class="form-check-label" for="chees">chees</label>
+            </div>
+             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="salami" name="ingredients" value="salami">
+                <label class="form-check-label" for="salami">salami</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="mushrooms" name="ingredients" value="mushrooms">
+                <label class="form-check-label" for="mushrooms">mushrooms</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="olives" name="ingredients" value="olives">
+                <label class="form-check-label" for="olives">olives</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tomatoes" name="ingredients" value="tomatoes">
+                <label class="form-check-label" for="tomatoes">tomatoes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="basil" name="ingredients" value="basil">
+                <label class="form-check-label" for="basil">basil</label>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <input id="submit" class="btn btn-active" type="submit">
+    </div>
+
+
+
+</form>
+
+
+</body>
+</html>
