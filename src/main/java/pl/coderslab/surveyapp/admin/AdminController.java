@@ -7,9 +7,9 @@ import pl.coderslab.surveyapp.user.UserService;
 @Controller
 public class AdminController {
 
-    private final AdminController adminController;
+    private final AdminService adminService;
 
-    public AdminController(AdminController adminController) {
-        this.adminController = adminController;
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
 }
