@@ -65,4 +65,8 @@ class HomeController {
         surveyFacade.saveFreeSurvey(freeSurvey);
         return "surveys";
     }
+    @GetMapping("survey")
+    public String survey(){
+        return "survey/survey02.html";
+    }
 }
