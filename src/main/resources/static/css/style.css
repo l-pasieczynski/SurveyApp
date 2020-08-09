@@ -25,7 +25,7 @@ html {
 body {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    background: var(--light-link-color) ;
+    background: snow;
 }
 
 p {
@@ -103,6 +103,35 @@ hr {
     min-height:200px;
 //prevent it from stretch in screen size < than 768px
 object-fit:cover
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.content{
+    text-align: justify;
+    padding: 20px;
+}
+
+.navbar{
+    background-color: rgb(61, 90, 128);
+    color: rgb(224, 251, 252);
+    width: 100%;
+    text-align: center;
+}
+
+
+.footer {
+    width: 100%;
+    background-color: rgb(61, 90, 128);
+    color: rgb(224, 251, 252);
+    text-align: center;
+}
+
+.social{
+    list-style-type: none;
+    display:inline-block;
 }
 
 @media(max-width:768px){

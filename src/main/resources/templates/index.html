@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:replace="fragments/header">
-<!--    <link rel="stylesheet" href="th:href='@{/static/css/style.css}'">-->
+<div th:include="fragments/header.html"></div>
 </header>
 <div id="carouselExampleSlidesOnly" class="carousel slide carusel-height" data-ride="carousel">
     <div class="carousel-inner">
@@ -16,13 +15,23 @@
         </div>
     </div>
 </div>
-<div>th: ${x}</div>
+<div class="content">
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet sollicitudin elit id laoreet. Praesent eu arcu egestas, fermentum sapien eu, tempus risus.
+        Cras ligula nibh, vestibulum quis faucibus dictum, finibus vitae nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse diam nunc, eleifend at
+        consectetur nec, dapibus eu ex. Morbi a commodo libero, eu fringilla libero. Curabitur odio ex, porta in velit ac, dignissim posuere risus. Mauris venenatis purus vel
+        tristique aliquam. Donec convallis accumsan urna, dignissim dictum justo faucibus sed. Maecenas tempor orci a diam malesuada, ac hendrerit ex pharetra. Morbi nec efficitur
+        orci, sit amet dignissim neque. Integer ligula urna, posuere ac cursus non, gravida eu dolor. Sed viverra enim interdum justo iaculis porta. Aliquam erat volutpat.
+
+        Integer a arcu eu ante mattis interdum in eget augue. Aliquam at consectetur purus. Nulla et consequat elit. Praesent sit amet vehicula est. Morbi dapibus dolor id
+        scelerisque iaculis. Sed ut leo et nibh placerat eleifend. Nulla mollis ornare diam, at semper ante convallis commodo. Ut interdum, ligula sed ornare luctus, odio quam
+        sagittis arcu, nec malesuada ex velit eget mauris. Phasellus suscipit sapien at enim mattis, vel vestibulum magna pharetra. Mauris ac blandit lectus. Morbi at aliquam arcu.
+        Etiam dignissim mi in massa dictum, non auctor eros lobortis. Suspendisse potenti. Fusce gravida erat ac dui lacinia, et iaculis felis ullamcorper.
+    </div>
+</div>
 
 
 
 
 
-
-
-
-<footer th:replace="fragments/footer.html"></footer>
+<div th:include="fragments/footer.html"></div>
