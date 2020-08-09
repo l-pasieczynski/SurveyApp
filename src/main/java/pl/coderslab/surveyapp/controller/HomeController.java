@@ -67,6 +67,6 @@ class HomeController {
     }
     @GetMapping("survey")
     public String survey(){
-        return "survey/survey02.html";
+        return "survey/survey01.html";
     }
 }

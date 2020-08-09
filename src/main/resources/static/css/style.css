@@ -111,9 +111,16 @@ object-fit:cover
     height:auto
     }
 }
+
 .line{
     width:50%;
     text-align:left;
     margin-left:0
 }
+
+.form-size{
+    width: 50%;
+}
+
+
 
