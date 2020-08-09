@@ -1,6 +1,8 @@
 package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Component;
+import pl.coderslab.surveyapp.answer.AnswerService;
+import pl.coderslab.surveyapp.question.QuestionService;
 
 import java.util.List;
 
@@ -9,10 +11,14 @@ public class SurveyFacade {
 
     private final SurveyService surveyService;
     private final FreeSurveyService freeSurveyService;
+    private final AnswerService answerService;
+    private final QuestionService questionService;
 
-    public SurveyFacade(SurveyService surveyService, FreeSurveyService freeSurveyService) {
+    public SurveyFacade(SurveyService surveyService, FreeSurveyService freeSurveyService, AnswerService answerService, QuestionService questionService) {
         this.surveyService = surveyService;
         this.freeSurveyService = freeSurveyService;
+        this.answerService = answerService;
+        this.questionService = questionService;
     }
 
     public List<FreeSurvey> findAllFreeSurveys (){
