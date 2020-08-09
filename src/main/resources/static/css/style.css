@@ -18,14 +18,14 @@ root {
 }
 
 html {
-    min-height: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    height: 100%;
+    font-size: 16px;
 }
+
 body {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    background: snow;
+    background-color: snow;
 }
 
 p {
@@ -42,9 +42,7 @@ p {
 .noMargin {
     margin: 0;
 }
-.center {
-    text-align: center;
-}
+
 .btn-color {
     background-color: var(--link-color);
     color: var(--light-link-color);
@@ -109,32 +107,22 @@ object-fit:cover
     font-weight: bold;
 }
 
-.content{
-    text-align: justify;
-    padding: 20px;
-}
-
-.navbar{
-    background-color: rgb(61, 90, 128);
-    color: rgb(224, 251, 252) !important;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-}
-
-
 .footer {
     width: 100%;
     background-color: rgb(61, 90, 128);
     color: rgb(224, 251, 252);
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 
 .social{
     list-style-type: none;
     display:inline-block;
+    width: 33%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 @media(max-width:768px){
@@ -154,5 +142,39 @@ object-fit:cover
     width: 50%;
 }
 
+.logo{
+    display: inline-block;
+}
 
+.content{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
+    padding: 20px;
+}
+
+.navbar{
+    background-color: rgb(61, 90, 128);
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+}
+
+.nav-item{
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-link{
+    color: rgb(224, 251, 252) !important;
+    font-size: 20px;
+}
+
+.content-line{
+    background-color: rgb(61, 90, 128);
+    color: rgb(224, 251, 252) !important;
+    width: 100%;
+}
 
