@@ -116,9 +116,10 @@ object-fit:cover
 
 .navbar{
     background-color: rgb(61, 90, 128);
-    color: rgb(224, 251, 252);
+    color: rgb(224, 251, 252) !important;
     width: 100%;
     text-align: center;
+    overflow: hidden;
 }
 
 
@@ -127,6 +128,8 @@ object-fit:cover
     background-color: rgb(61, 90, 128);
     color: rgb(224, 251, 252);
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .social{
