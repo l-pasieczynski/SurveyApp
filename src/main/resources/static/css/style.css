@@ -150,6 +150,9 @@ object-fit:cover
 .form-size{
     width: 50%;
 }
+.survey-logo{
+    background-image: url("/static/images/surveylogo.png");
+}
 
 
 
