@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:include="fragments/header.html"></div>
 </header>
-<div id="carouselExampleSlidesOnly" class="carousel slide carusel-height" data-ride="carousel">
+<div id="carouselExampleSlidesOnly" class="carousel slide carusel-height content" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100 " src="images/slide_1.jpg" alt="First slide">
@@ -30,8 +30,52 @@
     </div>
 </div>
 
+<div class="content-line">
+    <h5 class="content">About Us</h5>
+</div>
+<div>
+    <p class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ex eget mattis facilisis.
+        Vivamus ut libero egestas, fermentum tellus sed, ultrices sem. Praesent id tellus at
+        velit sodales semper et eget sem. Fusce elementum, magna id auctor ultricies, lacus
+    </p>
 
+    <section>
+        <div class="container-corp">
+            <div class="row">
+                <div class="col-sm text-center">
+                    <h1>Eurocorp</h1>
+                    <img src="images/eurocorp.jpg" alt="eurocorp logo"/>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
+                    </p>
+                </div>
+                <div class="col-sm text-center pr-4 pl-4 mr-4 ml-4">
+                    <h1>Aspari</h1>
+                    <img src="images/aspari.jpg" alt="aspari logo"/>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
+                    </p>
+                </div>
+                <div class="col-sm text-center">
+                    <h1>Cayman Global</h1>
+                    <img src="images/cayman.jpg" alt="cayman logo"/>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+</div>
+<div class="content-line">
+    <h5 class="content">Connect</h5>
+</div>
+<div class="content">
+    <ul>
+        <li class="social">Facebook</li>
+        <li class="social">Twitter</li>
+        <li class="social">Instagram</li>
+    </ul>
+</div>
 
 
 <div th:include="fragments/footer.html"></div>
