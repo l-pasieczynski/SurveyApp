@@ -1,5 +1,6 @@
 <head>
     <link  rel="stylesheet" th:href="@{/css/form.css}" type="text/css">
+    <script src="js/register.js"></script>
 </head>
 <div class="content-line">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,7 +15,7 @@
 <!--                <a class="nav-link" href="/register">Register</a>-->
 <!--            </li>-->
             <li class="nav-item menu">
-                <a class="nav-link" href="/survey">Survey</a>
+                <a class="nav-link" href="/surveys">Survey</a>
             </li>
             <li class="nav-item menu">
                 <a class="nav-link" href="/about">About</a>
@@ -69,15 +70,15 @@
                         <div class="row">
                             <h4>Account</h4>
                             <div class="input-group input-group-icon">
-                                <input type="text" placeholder="Full Name"/>
+                                <input type="text" placeholder="Full Name" name="username"/>
                                 <div class="input-icon"><i class="fa fa-user"></i></div>
                             </div>
                             <div class="input-group input-group-icon">
-                                <input type="email" placeholder="Email Adress"/>
+                                <input type="email" placeholder="Email Adress" name="email"/>
                                 <div class="input-icon"><i class="fa fa-envelope"></i></div>
                             </div>
                             <div class="input-group input-group-icon">
-                                <input type="password" placeholder="Password"/>
+                                <input type="password" placeholder="Password" name="password"/>
                                 <div class="input-icon"><i class="fa fa-key"></i></div>
                             </div>
                         </div>
@@ -117,7 +118,7 @@
                         <div class="clearfix">
 
                             <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="signup">Sign Up</button>
+                            <button type="submit" class="signup" id="signUp">Sign Up</button>
                         </div>
                     </div>
 
