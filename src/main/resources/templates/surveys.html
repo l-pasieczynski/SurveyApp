@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+</head>
 <header>
-<div th:include="fragments/header.html"></div>
+    <div th:include="fragments/header.html"></div>
 </header>
 
 
 <body>
+<h1>Survey List for non-logged User</h1>
+<div class="free-survey-list"></div>
 
-<div class="content">
-    <h1 class="text-center">Say Hello</h1>
-    <h2 class="text-center">We are waiting to hear from you</h2>
+<a href ="survey/survey02.html">
+    <div class="free-survey-table content">
+        <h5>Meal Survey</h5>
+    </div>
+</a>
+
+${surveys}
+
+
+<div onclick="document.getElementById('survey-1').style.display='block'" id="free-survey-btn" class="free-survey-table content">
+
+    <div id="survey-1">
+        <div th:include="survey/survey02.html"></div>
+    </div>
+
 </div>
 
-<div class="contact-form content">
-    <form id="contact-form" method="post" action="">
-        <input name="name" type="text" class="form" placeholder="Your name" required><br>
-        <input name="email" type="email" class="form" placeholder="Your email" required><br>
-        <textarea name="message" class="form" placeholder="Message" rows="5" required></textarea><br>
 
-        <input type="submit" class="form submit" value="SEND MESSAGE">
-    </form>
-</div>
 </body>
 
 

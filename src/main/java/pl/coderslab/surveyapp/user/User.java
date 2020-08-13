@@ -35,14 +35,11 @@ public class User {
     private String password;
     @NotNull
     private String gender;
-    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
     private BigDecimal accountBalance;
     private boolean active;
-    @NotNull
     private String education;
-    @NotNull
     private String placeOfLiving;
     @OneToMany
     private List<Survey> survey;

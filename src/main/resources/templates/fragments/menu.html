@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <head>
-    <link  rel="stylesheet" th:href="@{/css/form.css}" type="text/css">
     <script src="js/register.js"></script>
 </head>
 <div class="content-line">
@@ -11,9 +11,12 @@
             <li class="nav-item menu">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-<!--            <li class="nav-item menu">-->
-<!--                <a class="nav-link" href="/register">Register</a>-->
-<!--            </li>-->
+            <li class="nav-item menu">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item menu">
+                <a class="nav-link" href="/register">Register</a>
+            </li>
             <li class="nav-item menu">
                 <a class="nav-link" href="/surveys">Survey</a>
             </li>
@@ -24,111 +27,6 @@
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
         </ul>
-<!--        <button id="modalBtn" class=" signup">-->
-<!--            <a class="nav-link" href="/signup">Sign Up</a>-->
-<!--        </button>-->
-        <div style="float: right ">
-            <button onclick="document.getElementById('signInModal').style.display='block'" id="signInBtn" class="signup">Sign In</button>
-            <div id="signInModal" class="modal">
-                <span onclick="document.getElementById('signInModal').style.display='none'" class="close" title="Close Modal">X</span>
-                <form class="form">
-                    <div class="container">
-                        <h1>Sign In</h1>
-
-                        <p>Please fill data to login.</p>
-
-                        <div class="row">
-                            <h4>Account</h4>
-                            <div class="input-group input-group-icon">
-                                <input type="email" placeholder="Email Adress"/>
-                                <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                            </div>
-                            <div class="input-group input-group-icon">
-                                <input type="password" placeholder="Password"/>
-                                <div class="input-icon"><i class="fa fa-key"></i></div>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-
-                            <button type="button" onclick="document.getElementById('signInModal').style.display='none'" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="signup">Sign In</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-
-            <button onclick="document.getElementById('modal').style.display='block'" id="modelBtn" class="signup">Sign Up</button>
-            <div id="modal" class="modal">
-                <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">X</span>
-                <form class="form">
-                    <div class="container">
-                        <h1>Sign Up</h1>
-
-                        <p>Please fill in this form to create an account.</p>
-
-                        <div class="row">
-                            <h4>Account</h4>
-                            <div class="input-group input-group-icon">
-                                <input type="text" placeholder="Full Name" name="username" required/>
-                                <div class="input-icon"><i class="fa fa-user"></i></div>
-                            </div>
-                            <div class="input-group input-group-icon">
-                                <input type="email" placeholder="Email Adress" name="email"required/>
-                                <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                            </div>
-                            <div class="input-group input-group-icon">
-                                <input type="password" placeholder="Password" name="password" required/>
-                                <div class="input-icon"><i class="fa fa-key"></i></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-half">
-                                <h4>Date of Birth</h4>
-                                <div class="input-group">
-                                    <div class="col-third">
-                                        <input type="text" placeholder="DD"/>
-                                    </div>
-                                    <div class="col-third">
-                                        <input type="text" placeholder="MM"/>
-                                    </div>
-                                    <div class="col-third">
-                                        <input type="text" placeholder="YYYY"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-half">
-                                <h4>Gender</h4>
-                                <div class="input-group">
-                                    <input id="gender-male" type="radio" name="gender" value="male"/>
-                                    <label for="gender-male">Male</label>
-                                    <input id="gender-female" type="radio" name="gender" value="female"/>
-                                    <label for="gender-female">Female</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h4>Terms and Conditions</h4>
-                            <div class="input-group">
-                                <input id="terms" type="checkbox"/>
-                                <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
-                            </div>
-                        </div>
-
-                        <div class="clearfix">
-
-                            <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="signup" id="signUp">Sign Up</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
-
-
-
     </div>
 </nav>
 </div>

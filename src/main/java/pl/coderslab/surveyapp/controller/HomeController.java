@@ -1,17 +1,17 @@
 package pl.coderslab.surveyapp.controller;
 
-import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserService;
 
-import java.util.List;
+import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("/")
 class HomeController {
 
@@ -23,53 +23,47 @@ class HomeController {
         this.surveyFacade = surveyFacade;
     }
 
-    private ModelAndView modelAndView = new ModelAndView();
-
-    @PostMapping(value = "register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void registerUser(@RequestBody User user) {
-        userService.saveUser(user);
-    }
-
-    @PostMapping(value = "login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User loginUser(@RequestBody User user){
-        userService.loginUser(user);
-        return user;
-    }
-
-    @PostMapping(value = "surveys/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void freeSurveyPost(@RequestBody FreeSurvey freeSurvey) {
-        surveyFacade.saveFreeSurvey(freeSurvey);
-    }
-
     @GetMapping
-    public ModelAndView index () {
-        modelAndView.setViewName("index");
-        return modelAndView;
+    public String index() {
+        return "index";
     }
 
     @GetMapping("about")
-    public ModelAndView about() {
-        modelAndView.setViewName("about");
-        return modelAndView;
+    public String about() {
+        return "about";
     }
 
     @GetMapping("contact")
-    public ModelAndView contact() {
-        modelAndView.setViewName("contact");
-        return modelAndView;
+    public String contact() {
+        return "contact";
     }
 
     @GetMapping("surveys")
-    public ModelAndView surveys(Model model) {
-        List<FreeSurvey> surveys = surveyFacade.findAllFreeSurveys();
-        model.addAttribute("surveys", surveys);
-        modelAndView.setViewName("surveys");
-        return modelAndView;
+    public String getAllFreeSurveys(Model model) {
+        model.addAttribute("allSurveys", surveyFacade.findAllFreeSurveys());
+        return "surveys";
     }
 
     @GetMapping("surveys/{id}")
     public String freeSurvey(@PathVariable("id") Long id, Model model) {
         model.addAttribute("surveys", surveyFacade.findFreeSurveyById(id));
         return "surveys/${id}";
+    }
+
+    @GetMapping("register")
+    public ModelAndView register() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
+        modelAndView.setViewName("register");
+        return modelAndView;
+    }
+
+    @PostMapping("register")
+    public String createUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        userService.saveUser(user);
+        return "login";
     }
 }
