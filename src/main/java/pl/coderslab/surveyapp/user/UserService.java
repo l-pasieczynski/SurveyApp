@@ -11,4 +11,6 @@ public interface UserService {
     void delete(Long id);
 
     void fillUserData(User user, Long id);
+
+    void loginUser(User user);
 }

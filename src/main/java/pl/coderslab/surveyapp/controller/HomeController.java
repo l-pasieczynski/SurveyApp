@@ -2,11 +2,14 @@ package pl.coderslab.surveyapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.surveyapp.survey.FreeSurvey;
+import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
@@ -21,20 +24,8 @@ class HomeController {
     }
 
     @GetMapping
-    public String home() {
-        return "index.html";
-    }
-
-    @GetMapping("register")
-    public String register(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
-    }
-
-    @PostMapping("")
-    public String registerUser(@RequestBody User user) {
-        userService.saveUser(user);
-        return "redirect:login";
+    public String index() {
+        return "index";
     }
 
     @GetMapping("about")
@@ -47,10 +38,9 @@ class HomeController {
         return "contact";
     }
 
-
     @GetMapping("surveys")
-    public String surveys(Model model) {
-        model.addAttribute("surveys", surveyFacade.findAllFreeSurveys());
+    public String getAllFreeSurveys(Model model) {
+        model.addAttribute("allSurveys", surveyFacade.findAllFreeSurveys());
         return "surveys";
     }
 
@@ -60,13 +50,20 @@ class HomeController {
         return "surveys/${id}";
     }
 
-    @PostMapping("surveys/{id}")
-    public String freeSurveyPost(@RequestBody FreeSurvey freeSurvey) {
-        surveyFacade.saveFreeSurvey(freeSurvey);
-        return "surveys";
+    @GetMapping("register")
+    public ModelAndView register() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
+        modelAndView.setViewName("register");
+        return modelAndView;
     }
-    @GetMapping("survey")
-    public String survey(){
-        return "survey/survey02.html";
+
+    @PostMapping("register")
+    public String createUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        userService.saveUser(user);
+        return "login";
     }
 }

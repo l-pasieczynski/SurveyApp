@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header>
+<div th:include="fragments/header.html"></div>
+    <link  rel="stylesheet" th:href="@{/css/form.css}" type="text/css">
+</header>
+
+<body>
+
+<div>
+    <p th:if="${loginError}" style="color: red">Wrong username or password</p>
+    <form class="form" method="post" th:action="@{/login}">
+        <div class="container">
+            <div>
+                <div class="row">
+                    <h4>Login</h4>
+                    <div class="input-group input-group-icon">
+                        <input type="email" placeholder="Email Adress" name="email"/>
+                        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                    </div>
+                    <div class="input-group input-group-icon">
+                        <input type="password" placeholder="Password" name="password"/>
+                        <div class="input-icon"><i class="fa fa-key"></i></div>
+                    </div>
+                    <p th:if="${loginError}" style="color: red">Wrong username or password</p>
+                </div>
+                <input type="submit" value="Log in">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+</body>
+
+
+<div th:include="fragments/footer.html"></div>

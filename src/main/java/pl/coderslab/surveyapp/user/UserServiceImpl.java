@@ -57,5 +57,11 @@ class UserServiceImpl implements UserService {
         userRepository.save(currentUser);
     }
 
+    @Override
+    public void loginUser(User user) {
+//        userRepository.getOne()
+
+    }
+
 
 }

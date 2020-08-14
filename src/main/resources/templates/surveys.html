@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+</head>
+<header>
+    <div th:include="fragments/header.html"></div>
+</header>
+
+
+<body>
+<h1>Survey List for non-logged User</h1>
+<div class="free-survey-list"></div>
+
+<a href ="survey/survey02.html">
+    <div class="free-survey-table content">
+        <h5>Meal Survey</h5>
+    </div>
+</a>
+
+${surveys}
+
+
+<div onclick="document.getElementById('survey-1').style.display='block'" id="free-survey-btn" class="free-survey-table content">
+
+    <div id="survey-1">
+        <div th:include="survey/survey02.html"></div>
+    </div>
+
+</div>
+
+
+</body>
+
+
+<div th:include="fragments/footer.html"></div>
