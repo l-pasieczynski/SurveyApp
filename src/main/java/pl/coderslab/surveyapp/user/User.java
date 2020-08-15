@@ -31,9 +31,9 @@ public class User {
     @Email
     private String email;
     @Column(nullable = false)
-    @Size(min = 6)
+//    @Size(min = 6)
     private String password;
-    @NotNull
+//    @NotNull
     private String gender;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
@@ -48,4 +48,21 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", accountBalance=" + accountBalance +
+                ", active=" + active +
+                ", education='" + education + '\'' +
+                ", placeOfLiving='" + placeOfLiving + '\'' +
+                ", survey=" + survey +
+                ", roles=" + roles +
+                '}';
+    }
 }
