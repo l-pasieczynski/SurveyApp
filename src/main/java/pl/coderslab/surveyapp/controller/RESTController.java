@@ -2,19 +2,21 @@ package pl.coderslab.surveyapp.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.coderslab.surveyapp.mail.ContactMessage;
+import pl.coderslab.surveyapp.mail.EmailSender;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
-
-import javax.mail.Message;
 
 @RestController
 @RequestMapping("/")
 public class RESTController {
 
     private final SurveyFacade surveyFacade;
+    private final EmailSender emailSender;
 
-    public RESTController(SurveyFacade surveyFacade) {
+    public RESTController(SurveyFacade surveyFacade, EmailSender emailSender) {
         this.surveyFacade = surveyFacade;
+        this.emailSender = emailSender;
     }
 
     @PostMapping("surveys/{id}")
@@ -41,10 +43,8 @@ public class RESTController {
     }
 
     @PostMapping("contact")
-    public ModelAndView sendContactMessage(@RequestBody Message message) {
-
-        //TODO write logic to get message and send it to gmail
-
+    public ModelAndView sendContactMessage(@RequestBody ContactMessage contactMessage) {
+        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("contact");
         return modelAndView;

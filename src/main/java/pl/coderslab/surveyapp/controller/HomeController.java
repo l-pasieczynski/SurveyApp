@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.coderslab.surveyapp.mail.ContactMessage;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserService;
@@ -34,8 +35,11 @@ class HomeController {
     }
 
     @GetMapping("contact")
-    public String contact() {
-        return "contact";
+    public ModelAndView contact() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", new ContactMessage());
+        modelAndView.setViewName("contact");
+        return modelAndView;
     }
 
     @GetMapping("surveys")
