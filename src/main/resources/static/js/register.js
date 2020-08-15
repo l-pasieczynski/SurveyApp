@@ -1,6 +1,7 @@
 $(function () {
     let signUpBtn = $("#signUp");
     signUpBtn.on("submit", sendRegisterForm);
+    let menuButton = $(".menu")
 
     function sendRegisterForm() {
 
@@ -24,6 +25,11 @@ $(function () {
 
         return false;
 
+    }
+    menuButton.on("mouseenter" , changeButton);
+
+    function changeButton(){
+        menuButton.style.color="red";
     }
 
 });
