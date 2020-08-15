@@ -10,10 +10,10 @@ import pl.coderslab.surveyapp.user.CurrentUser;
 
 @Controller
 @SessionAttributes({"userId", "username"})
-@RequestMapping("/app")
+@RequestMapping("/application")
 public class AppController {
 
-    @GetMapping("/home")
+    @GetMapping("/app-home")
     public String appStart(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
         if (currentUser == null) {
             return "/login";
