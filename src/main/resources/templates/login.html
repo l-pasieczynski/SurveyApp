@@ -8,11 +8,11 @@
 
 <body>
 
-<div>
+<div style="margin-bottom: 20%">
     <div style="margin-top: 20px">
         <p th:if="${param.error != null}" style="color: red">Wrong username or password</p>
     </div>
-    <form class="form" method="post" th:action="@{/login}">
+    <form class="form" method="post" th:action="@{/login}" style="margin-top: 5%">
         <div class="container">
             <div>
                 <div class="row">
