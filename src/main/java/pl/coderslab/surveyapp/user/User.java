@@ -16,9 +16,9 @@ import java.util.Set;
 
 @Entity
 @Builder(toBuilder = true)
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor
 @NoArgsConstructor
-@Setter(value = AccessLevel.PACKAGE)
+@Setter
 @Getter
 public class User {
 
@@ -31,9 +31,9 @@ public class User {
     @Email
     private String email;
     @Column(nullable = false)
-//    @Size(min = 6)
+    @Size(min = 6)
     private String password;
-//    @NotNull
+    @NotNull
     private String gender;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
