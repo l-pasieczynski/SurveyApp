@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="js/contactFormSendMessage.js"></script>
+</head>
+<header>
+    <div th:include="fragments/header.html"></div>
+</header>
+<body>
+
+<div class="content">
+    <h1 class="text-center">Say Hello</h1>
+    <h2 class="text-center">We are waiting to hear from you</h2>
+</div>
+
+<div class="contact-form content" style="margin-bottom: 10%">
+    <form id="contact-form" th:object="${email}">
+        <input type="text" class="form" placeholder="Input Header" th:field="*{header} "required><br>
+        <input type="text" class="form" placeholder="Email Title" th:field="*{title}" required><br>
+        <input type="text" class="form" placeholder="Subject" th:field="*{subject}" required><br>
+        <textarea class="form" placeholder="Message" rows="5" th:field="*{description}" required></textarea><br>
+        <select class="form" th:field="*{usersEmailAddress}" multiple="true" required>
+
+
+        <input id="contact-form-submit" type="submit" class="form submit" value="SEND MESSAGE">
+    </form>
+</div>
+</body>
+
+</body>
+</html>
