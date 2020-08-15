@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <script src="js/register.js"></script>
+
 </head>
 <div class="content-line">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,6 +27,12 @@
             </li>
             <li class="nav-item menu">
                 <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item menu" sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/app/home}">Panel</a>
+            </li>
+            <li class="nav-item menu" sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Sign Out</a>
             </li>
         </ul>
     </div>
