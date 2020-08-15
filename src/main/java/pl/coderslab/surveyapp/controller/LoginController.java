@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @GetMapping("login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("loginError", false);
         return "login";
     }
 
@@ -26,7 +27,7 @@ public class LoginController {
     public String logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         authentication.setAuthenticated(false);
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/access-denied")

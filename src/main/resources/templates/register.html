@@ -22,15 +22,15 @@
             <div class="row">
                 <h4>Account</h4>
                 <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Full Name" th:field="*{username}"/>
+                    <input type="text" placeholder="Full Name" th:field="*{username}" required/>
                     <div class="input-icon"><i class="fa fa-user" style="color: #005eff"></i></div>
                 </div>
                 <div class="input-group input-group-icon">
-                    <input type="email" placeholder="Email Adress" th:field="*{email}"/>
+                    <input type="email" placeholder="Email Adress" th:field="*{email}" required/>
                     <div class="input-icon"><i class="fa fa-envelope" style="color: #005eff"></i></div>
                 </div>
                 <div class="input-group input-group-icon">
-                    <input type="password" placeholder="Password" th:field="*{password}"/>
+                    <input type="password" placeholder="Password" th:field="*{password}" required/>
                     <div class="input-icon"><i class="fa fa-key" style="color: #005eff"></i></div>
                 </div>
             </div>
@@ -38,23 +38,15 @@
                 <div class="col-half">
                     <h4>Date of Birth</h4>
                     <div class="input-group">
-                        <div class="col-third">
-                            <input type="text" placeholder="DD"/>
-                        </div>
-                        <div class="col-third">
-                            <input type="text" placeholder="MM"/>
-                        </div>
-                        <div class="col-third">
-                            <input type="text" placeholder="YYYY"/>
-                        </div>
+                            <input type="date" th:field="*{dateOfBirth}"/>
                     </div>
                 </div>
                 <div class="col-half">
                     <h4>Gender</h4>
                     <div class="input-group">
-                        <input id="gender-male" type="radio" th:field="*{gender}" value="male"/>
+                        <input id="gender-male" type="radio" th:field="*{gender}" value="male" required/>
                         <label for="gender-male">Male</label>
-                        <input id="gender-female" type="radio" th:field="*{gender}" value="female"/>
+                        <input id="gender-female" type="radio" th:field="*{gender}" value="female" required/>
                         <label for="gender-female">Female</label>
                     </div>
                 </div>
@@ -62,9 +54,9 @@
             <div class="row">
                 <h4>Terms and Conditions</h4>
                 <div class="input-group">
-                    <input id="terms" type="checkbox"/>
+                    <input id="terms" type="checkbox" required/>
                     <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
-                    <input type="submit" value="Send"/>
+                    <input type="submit" class="form submit" style="width: 50%" value="REGISTER">
                 </div>
             </div>
         </form>
