@@ -1,5 +1,7 @@
 package pl.coderslab.surveyapp.user;
 
+import java.util.List;
+
 public interface UserService {
 
     User findByUsername(String username);
@@ -13,4 +15,6 @@ public interface UserService {
     void fillUserData(User user, Long id);
 
     void loginUser(User user);
+
+    List<User> findAll();
 }

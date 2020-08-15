@@ -31,4 +31,8 @@ class FreeSurveyService {
         FreeSurvey survey = new FreeSurvey();
         survey.setNumberOfParticipant(0);
     }
+
+    public void delete(Long id) {
+        freeSurveyRepository.deleteById(id);
+    }
 }

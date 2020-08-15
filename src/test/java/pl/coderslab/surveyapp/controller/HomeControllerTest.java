@@ -1,37 +1,37 @@
 package pl.coderslab.surveyapp.controller;
 
-import org.aspectj.lang.annotation.Before;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
 import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserService;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
+@WebMvcTest(HomeController.class)
 class HomeControllerTest {
 
+    @Autowired
+    private MockMvc mvc;
+
+    @MockBean
     private UserService userService;
 
-    @Before
-    public void setUp() {
-        userService = new UserService();
-    }
+    @InjectMocks
+    HomeController homeController;
+
 
     @Test
     public void shouldAddUser() {
-        //given
-        User user = new User();
 
-        //when
-        UserService userService = Mockito.mock(UserService.class);
-
-        //then SUCCESS
-        List<User> users = userService.findAll();
-        assertThat(users, CoreMatchers.hasItem(user));
+        this.userService.saveUser(new User().toBuilder()
+                .username("Lucas")
+                .build());
+        User savedUser = userService.findByUsername("Lucas");
+        assertNotNull(savedUser);
 
     }
-
 }

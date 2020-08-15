@@ -47,7 +47,7 @@ class HomeController {
     @GetMapping("surveys/{id}")
     public String freeSurvey(@PathVariable("id") Long id, Model model) {
         model.addAttribute("surveys", surveyFacade.findFreeSurveyById(id));
-        return "surveys/${id}";
+        return "survey/survey" + id;
     }
 
     @GetMapping("register")

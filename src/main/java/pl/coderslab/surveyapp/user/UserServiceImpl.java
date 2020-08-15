@@ -7,6 +7,7 @@ import pl.coderslab.surveyapp.role.RoleRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 class UserServiceImpl implements UserService {
@@ -61,6 +62,12 @@ class UserServiceImpl implements UserService {
     public void loginUser(User user) {
 //        userRepository.getOne()
 
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> all = userRepository.findAll();
+        return all;
     }
 
 

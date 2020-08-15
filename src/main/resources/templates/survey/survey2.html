@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:replace="fragments/header">
-
-
+<header>
+    <link  rel="stylesheet" th:href="@{/css/form.css}" type="text/css">
 </header>
 <body>
-<div class="center">
+<div class="modal-content">
+<div class="center ">
     <h1> Welcome to our survey </h1>
     <p class="title-survey">Your favorite food</p>
 </div>
-
 <form class="center add-form">
 
     <div><label><h3>Your favorite fruit</h3> </label></div>
-    <div class="form-check form-check-inline">
+    <div class="input-group">
         <input class="form-check-input" type="radio" id="apple" name="fruits" value="apple">
         <label class="form-check-label" for="apple">apple</label>
-    </div>
-    <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="orange" name="fruits" value="orange">
         <label class="form-check-label" for="orange">orange</label>
-    </div>
-    <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="strawberry" name="fruits" value="strawberry">
         <label class="form-check-label" for="strawberry">strawberry</label>
-    </div>
-    <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="respberry" name="fruits" value="respberry">
         <label class="form-check-label" for="respberry">respberry</label>
     </div>
@@ -102,7 +95,7 @@
 
 
 </form>
-
+</div>
 
 </body>
 </html>

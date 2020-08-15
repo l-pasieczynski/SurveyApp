@@ -32,4 +32,8 @@ public class SurveyFacade {
     public void saveFreeSurvey(FreeSurvey survey) {
         freeSurveyService.save(survey);
     }
+
+    public void deleteFreeSurvey(Long id) {
+        freeSurveyService.delete(id);
+    }
 }
