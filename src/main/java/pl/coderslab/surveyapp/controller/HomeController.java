@@ -57,6 +57,11 @@ class HomeController {
         modelAndView.setViewName("register");
         return modelAndView;
     }
+//    @GetMapping("register")
+//    public String register(Model m){
+//        m.addAttribute("user", new User());
+//        return "register";
+//    }
 
     @PostMapping("register")
     public String createUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
