@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -9,20 +9,23 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/style2.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style2.css}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="../../static/js/aplications.js"></script>
+    <script type="text/javascript" th:src="@{/js/aplications.js}"></script>
+
 </head>
 
 <body>
     <header class="page-header">
         <nav class="navbar navbar-expand-lg justify-content-between">
-            <a class="logo" href="/"><img src="../../static/images/logo.png"  width="300" height="60" alt="Survey Application"></a>
-         <div class="d-flex justify-content-around">
-             <h4 class="text-light mr-3">Imię</h4>
-             <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
-         </div>
+            <a class="logo" href="/"><img th:src="@{/images/logo.png}"  width="300" height="60" alt="Survey Application"></a>
+            <div class="d-flex justify-content-around">
+
+                    <div >autentykacja</div>
+
+                <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
+            </div>
         </nav>
     </header>
 

@@ -135,7 +135,7 @@ margin: 0 auto !important;
 /*------------------------------*/
 
 .page-header {
-  background: rgb(61, 90, 128);
+  background-image: linear-gradient(to right,rgba(61, 90, 128,0.5),rgba(61, 90, 128,1) ) ;
 }
 
 .nav-link {
@@ -313,7 +313,7 @@ margin: 0 auto !important;
   margin: 0;
 }
 .long-bg {
-  background: rgb(61, 90, 128);
+  background-image: linear-gradient(to bottom,rgba(61, 90, 128,0.5),rgba(61, 90, 128,1)) ;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   display: inline-block;
