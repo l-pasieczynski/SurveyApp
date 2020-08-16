@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.admin;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
@@ -16,8 +17,14 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping()
+    @GetMapping("/home")
     public String admin(){
-        return "admin";
+        return "admin/home";
+    }
+
+    @GetMapping("/users")
+    public String users(Model model){
+        model.addAttribute("users", adminService.getAllUsers());
+        return "admin/users";
     }
 }

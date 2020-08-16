@@ -17,6 +17,12 @@
 
 <div class="contact-form content" style="margin-bottom: 10%">
     <form id="contact-form" th:object="${message}">
+<!--        MVC OK-->
+<!--        <form id="contact-form" th:object="${message}" method="post" th:action="@{/contact}">-->
+
+<!--        REST NO OK-->
+<!--        <form id="contact-form" th:object="${message}" method="post" th:action="@{/contact}">-->
+
         <input type="text" class="form" placeholder="Your name" th:field="*{name} "required><br>
         <input type="email" class="form" placeholder="Your email" th:field="*{email}" required><br>
         <textarea class="form" placeholder="Message" rows="5" th:field="*{message}" required></textarea><br>

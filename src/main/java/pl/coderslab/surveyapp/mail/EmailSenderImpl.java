@@ -49,9 +49,7 @@ class EmailSenderImpl implements EmailSender {
 
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail);
-            //TODO zmienic adres email
-//            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("nasz@gmail.com");
+            helper.setTo("surveywebapp2020@gmail.com");
             helper.setSubject(name + " Contact Form Question");
             helper.setFrom(email);
             helper.setText(message);

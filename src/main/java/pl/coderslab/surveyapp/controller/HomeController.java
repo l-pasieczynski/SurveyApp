@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.surveyapp.mail.ContactMessage;
+import pl.coderslab.surveyapp.mail.EmailSender;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserService;
@@ -18,10 +19,12 @@ class HomeController {
 
     private final UserService userService;
     private final SurveyFacade surveyFacade;
+    private final EmailSender emailSender;
 
-    public HomeController(UserService userService, SurveyFacade surveyFacade) {
+    public HomeController(UserService userService, SurveyFacade surveyFacade, EmailSender emailSender) {
         this.userService = userService;
         this.surveyFacade = surveyFacade;
+        this.emailSender = emailSender;
     }
 
     @GetMapping
@@ -42,13 +45,19 @@ class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("surveys")
+    @PostMapping("contact")
+    public String send(@ModelAttribute("message") ContactMessage contactMessage) {
+        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
+        return "index";
+    }
+
+    @GetMapping("freeSurveys")
     public String getAllFreeSurveys(Model model) {
         model.addAttribute("allSurveys", surveyFacade.findAllFreeSurveys());
         return "surveys";
     }
 
-    @GetMapping("surveys/{id}")
+    @GetMapping("freeSurveys/{id}")
     public String freeSurvey(@PathVariable("id") Long id, Model model) {
         model.addAttribute("surveys", surveyFacade.findFreeSurveyById(id));
         return "survey/survey" + id;

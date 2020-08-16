@@ -9,6 +9,7 @@ import pl.coderslab.surveyapp.mail.ContactMessage;
 import pl.coderslab.surveyapp.mail.Email;
 import pl.coderslab.surveyapp.mail.EmailSender;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
+import pl.coderslab.surveyapp.survey.Survey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 
 import javax.validation.Valid;
@@ -27,40 +28,70 @@ public class RESTController {
         this.templateEngine = templateEngine;
     }
 
-    @PostMapping("surveys/{id}")
-    public ModelAndView addFreeSurvey(@RequestBody FreeSurvey freeSurvey) {
-        surveyFacade.saveFreeSurvey(freeSurvey);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("surveys");
+    private ModelAndView modelAndView = new ModelAndView();
+
+
+    @GetMapping("/surveys")
+    public ModelAndView allSurveys() {
+        modelAndView.addObject("surveys", surveyFacade.findAll());
+        modelAndView.setViewName("admin/surveys");
         return modelAndView;
     }
 
-    @DeleteMapping("admin/surveys/delete/{id}")
+    @GetMapping("surveys/{id}")
+    public ModelAndView getSurveyById(@PathVariable Long id) {
+        modelAndView.addObject("survey", surveyFacade.findById(id));
+        modelAndView.setViewName("admin/surveys/" + id);
+        return modelAndView;
+    }
+
+    @GetMapping("/freesurveys")
+    public ModelAndView allFreeSurveys() {
+        modelAndView.addObject("freeSurveys", surveyFacade.findAllFreeSurveys());
+        modelAndView.setViewName("admin/freesurveys");
+        return modelAndView;
+    }
+
+    @GetMapping("freesurveys/{id}")
+    public ModelAndView getFreeSurveyById(@PathVariable Long id) {
+        modelAndView.addObject("freeSurvey", surveyFacade.findFreeSurveyById(id));
+        modelAndView.setViewName("admin/freesurveys/" + id);
+        return modelAndView;
+    }
+
+    @DeleteMapping("admin/freesurveys/delete/{id}")
     public ModelAndView deleteFreeSurvey(@PathVariable Long id) {
         surveyFacade.deleteFreeSurvey(id);
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("surveys");
         return modelAndView;
     }
 
-    @PutMapping("admin/surveys/edit/{id}")
+    @PutMapping("admin/freesurveys/edit/{id}")
     public ModelAndView editFreeSurvey(@RequestBody FreeSurvey freeSurvey, Long id) {
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("surveys");
         return modelAndView;
     }
 
-    @PostMapping("contact")
-    public ModelAndView sendContactMessage(@RequestBody @Valid ContactMessage contactMessage, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("contact");
-            return modelAndView;
-        }
-        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
-        modelAndView.setViewName("contact");
+    @PostMapping("survey/{id}")
+    public ModelAndView addFreeSurvey(@RequestBody FreeSurvey freeSurvey) {
+        surveyFacade.saveFreeSurvey(freeSurvey);
+        modelAndView.setViewName("surveys");
         return modelAndView;
     }
+
+    @PostMapping("app/survey/{id}")
+    public ModelAndView addAppSurvey (@RequestBody Survey survey) {
+        surveyFacade.saveSurvey(survey);
+        modelAndView.setViewName("app/survey");
+        return modelAndView;
+    }
+
+//    @PostMapping("contact")
+//    public ModelAndView sendContactMessage(@RequestBody ContactMessage contactMessage) {
+//        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
+//        modelAndView.setViewName("contact");
+//        return modelAndView;
+//    }
 
     @PostMapping("/app/admin/email")
     public ModelAndView sendEmail(@RequestBody Email email) {
@@ -72,9 +103,7 @@ public class RESTController {
         String body = templateEngine.process("template", context);
 
         emailSender.sendEmail(email.getUsersEmailAddress(), email.getSubject(), body);
-        ModelAndView modelAndView = new ModelAndView();
-        //TODO sprawdzić poniższy adres
-        modelAndView.setViewName("application/admin");
+        modelAndView.setViewName("admin/home");
         return modelAndView;
     }
 
