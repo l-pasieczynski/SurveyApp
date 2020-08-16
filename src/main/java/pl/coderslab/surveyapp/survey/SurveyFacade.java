@@ -36,4 +36,16 @@ public class SurveyFacade {
     public void deleteFreeSurvey(Long id) {
         freeSurveyService.delete(id);
     }
+
+    public List<Survey> findAll() {
+        return surveyService.findAll();
+    }
+
+    public Survey findById(Long id) {
+        return surveyService.findById(id);
+    }
+
+    public void saveSurvey(Survey survey) {
+        surveyService.save(survey);
+    }
 }
