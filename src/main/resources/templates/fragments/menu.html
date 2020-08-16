@@ -32,7 +32,7 @@
                 <a class="nav-link" th:href="@{/app/home}">Panel</a>
             </li>
             <li class="nav-item menu" sec:authorize="isAuthenticated()">
-                <a th:href="@{/logout}">Sign Out</a>
+                <button class="btn btn-color"><a th:href="@{/logout}">Sign Out</a></button>
             </li>
         </ul>
     </div>

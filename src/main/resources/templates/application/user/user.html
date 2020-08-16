@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="application/fragments-app/app-header.html">
+
+
+    <div class="content-line-app">
+        <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-app">
+                <ul class="navbar-nav">
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/}">Edit user</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/login}">Edit Password</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/register}">Delete user</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/surveys}">Survey history</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+<div class="content-in-app"><h1>To jest USER</h1></div>
+
+
+
+
+    <div th:include="application/fragments-app/app-footer.html"></div>
+

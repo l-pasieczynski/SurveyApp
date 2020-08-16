@@ -21,6 +21,11 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.delete(id);
     }
+
+    @GetMapping("")
+    public String userHome(){
+        return "application/user/user";
+    }
 }
 
 
