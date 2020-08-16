@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.surveyapp.role.Role;
 import pl.coderslab.surveyapp.role.RoleRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -68,6 +69,13 @@ class UserServiceImpl implements UserService {
     public List<User> findAll() {
         List<User> all = userRepository.findAll();
         return all;
+    }
+
+    @Override
+    public List<String> findAllUsersEmailAddresses() {
+        List <String> usersEmailAddresses = new ArrayList<>();
+        userRepository.findAll().forEach(user -> usersEmailAddresses.add(user.getEmail()));
+        return usersEmailAddresses;
     }
 
 

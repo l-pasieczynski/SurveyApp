@@ -17,4 +17,6 @@ public interface UserService {
     void loginUser(User user);
 
     List<User> findAll();
+
+    List<String> findAllUsersEmailAddresses();
 }

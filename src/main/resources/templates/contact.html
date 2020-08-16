@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="js/contactFormSendMessage.js"></script>
+</head>
 <header>
 <div th:include="fragments/header.html"></div>
 </header>
@@ -13,12 +16,12 @@
 </div>
 
 <div class="contact-form content" style="margin-bottom: 10%">
-    <form id="contact-form" method="post" action="">
-        <input name="name" type="text" class="form" placeholder="Your name" required><br>
-        <input name="email" type="email" class="form" placeholder="Your email" required><br>
-        <textarea name="message" class="form" placeholder="Message" rows="5" required></textarea><br>
+    <form id="contact-form" th:object="${message}">
+        <input type="text" class="form" placeholder="Your name" th:field="*{name} "required><br>
+        <input type="email" class="form" placeholder="Your email" th:field="*{email}" required><br>
+        <textarea class="form" placeholder="Message" rows="5" th:field="*{message}" required></textarea><br>
 
-        <input type="submit" class="form submit" value="SEND MESSAGE">
+        <input id="contact-form-submit" type="submit" class="form submit" value="SEND MESSAGE">
     </form>
 </div>
 </body>
