@@ -26,7 +26,7 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  background: repeat url("../images/image.png");
+
 }
 
 p {
@@ -148,22 +148,9 @@ margin: 0 auto !important;
     color: var(--link-color)!important;
 }
 
-.main-logo {
-  font-family: "Charmonman", cursive;
-  display: inline-block;
-  color: var(--light-link-color)!important;
-  margin-top: 10px;
-  font-size: 2.7rem;
-  font-weight: 600;
-}
 
-.main-logo-smaller {
-  font-size: 2rem;
-}
 
-.main-logo span {
-  color: var(--link-color);
-}
+
 
 /*------------------------------*/
 /*---- Slider section----*/
@@ -355,6 +342,7 @@ margin: 0 auto !important;
   height: 39px;
   width: 45px;
   padding-top: 1px;
+  margin-left: 8px;
 }
 
 .icon-user {
@@ -446,21 +434,64 @@ margin: 0 auto !important;
 }
 
 /*------------------------------*/
-/*---- Schedule ----*/
+/*---- Main css ----*/
 /*------------------------------*/
 
-.schedules-content {
-  margin-top: 20px;
+
+.username{
+  margin-top: auto;
 }
-.schedules-text {
-  font-size: .9rem;
-  margin-bottom: 0;
+.nav-app {
+  display: inline;
 
 }
-.schedules-content .form-group.row {
-  display: flex;
-  align-items: center;
+.nav-link-color{
+  color: red;
 }
-.schedules-content-header {
-  margin-bottom: 50px;
+
+.navbar-app{
+  background-color: rgb(61, 90, 128);
+  width: 100%;
+  padding: 0px;
+  margin: 0;
+  border-bottom-left-radius: 5px;
+
+
+}
+.content-line-app{
+  background-color: #001aff;
+  color: #0037ff;
+  width: 92%;
+  border-radius: 10px;
+  display: table-cell;
+  float: right;
+
+}
+.content-in-app{
+  background-color: #ffffff;
+  color: black;
+  width: 92%;
+  border-radius: 10px;
+  display: table-cell;
+  float: right;
+}
+.menu{
+
+  margin-left: 8%;
+  margin-right: 8%;
+}
+.float-left{
+  width: 8%;
+
+}
+.row {
+  zoom: 1;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table-cell;
+}
+.row:after {
+  clear: both;
 }
