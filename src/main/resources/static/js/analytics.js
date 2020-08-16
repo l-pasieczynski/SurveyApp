@@ -1,6 +1,6 @@
 $(function (){
     var ctx = document.getElementById('myChart').getContext('2d');
-    var data1 = 12;
+    var data1 = 22;
     var data2 = 23;
     var data3 = 8;
     var data4 = 5;
