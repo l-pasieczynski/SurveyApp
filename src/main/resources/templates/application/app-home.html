@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
@@ -23,7 +23,7 @@
             <a class="logo" href="/"><img th:src="@{/images/logo.png}"  width="300" height="60" alt="Survey Application"></a>
             <div class="d-flex justify-content-around">
 
-                    <div >autentykacja</div>
+                <h4 class="text-light mr-3" th:text="${#authentication.principal.Username}" ></h4>
 
                 <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
             </div>
