@@ -86,7 +86,7 @@ public class RESTController {
         return modelAndView;
     }
 
-//    @PostMapping("contact")
+//    @PostMapping(value = "contact", apllication/json)
 //    public ModelAndView sendContactMessage(@RequestBody ContactMessage contactMessage) {
 //        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
 //        modelAndView.setViewName("contact");
