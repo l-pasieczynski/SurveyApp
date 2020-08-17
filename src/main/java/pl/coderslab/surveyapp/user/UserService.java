@@ -1,5 +1,7 @@
 package pl.coderslab.surveyapp.user;
 
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 
 public interface UserService {
@@ -19,4 +21,7 @@ public interface UserService {
     List<User> findAll();
 
     List<String> findAllUsersEmailAddresses();
+
+    void updateUser(User user);
+
 }
