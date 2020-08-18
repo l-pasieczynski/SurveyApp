@@ -48,7 +48,11 @@ public class UserController {
         }
         userService.updateUser(user);
 
-        return "application/user/user";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.setAuthenticated(false);
+
+
+        return "login";
     }
 }
 

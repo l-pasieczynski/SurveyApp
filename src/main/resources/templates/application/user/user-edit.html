@@ -31,7 +31,7 @@
     <div class="container" style="margin-bottom: 10%">
         <form method="post" th:object="${user}" th:action="@{/user/edit}">
             <div class="row">
-                <h4>Account</h4>
+                <h4>Your Data</h4>
                 <div class="input-group input-group-icon">
                     <input type="text" placeholder="Full Name" th:field="*{username}" required/>
                     <div class="input-icon"><i class="fa fa-user" style="color: #005eff"></i></div>
@@ -57,17 +57,41 @@
                         <label for="gender-female">Female</label>
                     </div>
                 </div>
+                <div class="col-half">
+                    <h4>Place of living</h4>
+                    <div class="input-group">
+                        <input id="living-village" type="radio" th:field="*{placeOfLiving}" value="Village" required/>
+                        <label for="living-village">Village</label>
+                        <input id="living-town" type="radio" th:field="*{placeOfLiving}" value="Town" required/>
+                        <label for="living-town">Town</label>
+                        <input id="living-city" type="radio" th:field="*{placeOfLiving}" value="City" required/>
+                        <label for="living-city">City</label>
+                    </div>
+                </div>
+                <div class="col-half">
+                    <h4>Education</h4>
+                    <div class="input-group">
+                        <input id="education-primary-school" type="radio" th:field="*{education}" value="Primary school" required/>
+                        <label for="education-primary-school">Primary school</label>
+                        <input id="education-secondary-school" type="radio" th:field="*{education}" value="Secondary school" required/>
+                        <label for="education-secondary-school">Secondary school</label>
+                        <input id="education-higher-education" type="radio" th:field="*{education}" value="Higher education" required/>
+                        <label for="education-higher-education">Higher education</label>
+                    </div>
+                </div>
             </div>
-            <h4>Enter password to confirm new data</h4>
             <div class="input-group">
-                <input type="password" th:field="*{password}">
+                <input type="hidden" th:field="*{password}">
+            </div>
+            <div class="input-group">
+                <input type="hidden" th:field="*{id}">
             </div>
             <div class="row">
-                <h4>Terms and Conditions</h4>
+                <h4>Are you sure ???</h4>
                 <div class="input-group">
                     <input id="terms" type="checkbox" required/>
-                    <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
-                    <input type="submit" class="form submit" style="width: 50%" value="REGISTER">
+                    <label for="terms">Yes. Please change my data</label>
+                    <input type="submit" class="form submit" style="width: 80%" value="UPDATE">
                 </div>
             </div>
         </form>
