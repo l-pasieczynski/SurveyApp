@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/form.css}" type="text/css">
+<head th:include="application/fragments-app/app-header.html">
+
+
+    <div class="content-line-app">
+        <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-app">
+                <ul class="navbar-nav">
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/}">Edit user</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/login}">Edit Password</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/register}">Delete user</a>
+                    </li>
+                    <li class="nav-item menu">
+                    <a class="nav-link" th:href="@{/surveys}">Survey</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/surveys}">Survey history</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="margin-bottom: 10%">
+        <form method="post" th:object="${user}" th:action="@{/user/edit}">
+            <div class="row">
+                <h4>Your Data</h4>
+                <div class="input-group input-group-icon">
+                    <input type="text" placeholder="Full Name" th:field="*{username}" required/>
+                    <div class="input-icon"><i class="fa fa-user" style="color: #005eff"></i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="email" placeholder="Email Adress" th:field="*{email}" required/>
+                    <div class="input-icon"><i class="fa fa-envelope" style="color: #005eff"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <h4>Date of Birth</h4>
+                    <div class="input-group">
+                        <input type="date" th:field="*{dateOfBirth}"/>
+                    </div>
+                </div>
+                <div class="col-half">
+                    <h4>Gender</h4>
+                    <div class="input-group">
+                        <input id="gender-male" type="radio" th:field="*{gender}" value="male" required/>
+                        <label for="gender-male">Male</label>
+                        <input id="gender-female" type="radio" th:field="*{gender}" value="female" required/>
+                        <label for="gender-female">Female</label>
+                    </div>
+                </div>
+                <div class="col-half">
+                    <h4>Place of living</h4>
+                    <div class="input-group">
+                        <input id="living-village" type="radio" th:field="*{placeOfLiving}" value="Village" required/>
+                        <label for="living-village">Village</label>
+                        <input id="living-town" type="radio" th:field="*{placeOfLiving}" value="Town" required/>
+                        <label for="living-town">Town</label>
+                        <input id="living-city" type="radio" th:field="*{placeOfLiving}" value="City" required/>
+                        <label for="living-city">City</label>
+                    </div>
+                </div>
+                <div class="col-half">
+                    <h4>Education</h4>
+                    <div class="input-group">
+                        <input id="education-primary-school" type="radio" th:field="*{education}" value="Primary school" required/>
+                        <label for="education-primary-school">Primary school</label>
+                        <input id="education-secondary-school" type="radio" th:field="*{education}" value="Secondary school" required/>
+                        <label for="education-secondary-school">Secondary school</label>
+                        <input id="education-higher-education" type="radio" th:field="*{education}" value="Higher education" required/>
+                        <label for="education-higher-education">Higher education</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h4>Are you sure ???</h4>
+                <div class="input-group">
+                    <input id="terms" type="checkbox" required/>
+                    <label for="terms">Yes. Please change my data</label>
+                    <input type="submit" class="form submit" style="width: 80%" value="UPDATE">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div th:include="application/fragments-app/app-footer.html"></div>
+

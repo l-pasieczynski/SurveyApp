@@ -48,21 +48,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", accountBalance=" + accountBalance +
-                ", active=" + active +
-                ", education='" + education + '\'' +
-                ", placeOfLiving='" + placeOfLiving + '\'' +
-                ", survey=" + survey +
-                ", roles=" + roles +
-                '}';
-    }
+
+
 }

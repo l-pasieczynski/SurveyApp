@@ -19,7 +19,7 @@
         <a class="logo" href="/"><img th:src="@{/images/logo.png}"  width="300" height="60" alt="Survey Application"></a>
         <div class="d-flex justify-content-around">
 
-            <h4 class="text-light mr-3 username" th:text="${#authentication.principal.Username}" ></h4>
+            <h4 class="text-light mr-3 username" th:text="${#authentication.getPrincipal().getUsername()}" ></h4>
             <div class="nav-item menu" sec:authorize="isAuthenticated()">
                 <button class="btn btn-color"><a th:href="@{/logout}">Sign Out</a></button>
             </div>

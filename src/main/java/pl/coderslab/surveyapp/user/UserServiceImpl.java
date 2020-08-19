@@ -78,5 +78,14 @@ class UserServiceImpl implements UserService {
         return usersEmailAddresses;
     }
 
+    @Override
+    public void updateUser(User user) {
+        user.setPassword(user.getPassword());
+        user.setActive(true);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
+    }
+
 
 }
