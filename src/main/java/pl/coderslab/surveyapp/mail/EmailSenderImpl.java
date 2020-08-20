@@ -50,7 +50,7 @@ class EmailSenderImpl implements EmailSender {
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail);
             helper.setTo("surveywebapp2020@gmail.com");
-            helper.setSubject(name + " Contact Form Question");
+            helper.setSubject(name + " Contact Form Question from " + email);
             helper.setFrom(email);
             helper.setText(message);
         } catch (MessagingException e) {

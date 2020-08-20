@@ -19,4 +19,8 @@ public interface UserService {
     List<User> findAll();
 
     List<String> findAllUsersEmailAddresses();
+
+    List<User> findAllByRequestParam(UserSearch userSearch);
+
+    void deactivate(Long id);
 }
