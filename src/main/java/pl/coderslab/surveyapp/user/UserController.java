@@ -23,6 +23,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
 //    @PutMapping("edit/{id}")
 //    public void editUser (@RequestBody User user, @PathVariable Long id) {
 //        userService.fillUserData(user, id);
@@ -34,7 +35,8 @@ public class UserController {
 //    }
 
     @GetMapping("")
-    public String userHome(){
+    public String userHome(Model m, HttpSession session){
+        m.addAttribute("user",userService.findById((Long) session.getAttribute("userId")));
         return "application/user/user";
     }
 
