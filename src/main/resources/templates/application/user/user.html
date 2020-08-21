@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-                 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 
 <head th:include="application/fragments-app/app-header.html">
 
 
-    <div class="content-line-app">
+    <div class="content-line-app" th:fragment="user-menu">
         <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
             <div class="navbar-app">
                 <ul class="navbar-nav">
@@ -13,7 +13,7 @@
                         <a class="nav-link" th:href="@{/user/edit}">Edit user</a>
                     </li>
                     <li class="nav-item menu">
-                        <a class="nav-link" th:href="@{/login}">Edit Password</a>
+                        <a class="nav-link" th:href="@{/user/edit/password}">Edit Password</a>
                     </li>
                     <li class="nav-item menu">
                         <a class="nav-link" th:href="@{/register}">Delete user</a>
