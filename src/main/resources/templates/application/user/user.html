@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-                 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 
 <head th:include="application/fragments-app/app-header.html">
 
 
-    <div class="content-line-app">
+    <div class="content-line-app" th:fragment="user-menu">
         <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
             <div class="navbar-app">
                 <ul class="navbar-nav">
@@ -13,7 +13,7 @@
                         <a class="nav-link" th:href="@{/user/edit}">Edit user</a>
                     </li>
                     <li class="nav-item menu">
-                        <a class="nav-link" th:href="@{/login}">Edit Password</a>
+                        <a class="nav-link" th:href="@{/user/edit/password}">Edit Password</a>
                     </li>
                     <li class="nav-item menu">
                         <a class="nav-link" th:href="@{/register}">Delete user</a>
@@ -29,7 +29,58 @@
             </div>
         </nav>
     </div>
-<div class="content-in-app"><h1>To jest USER</h1></div>
+
+    <div class="container">
+        <div class="border-3">
+            <h4 style="text-align: center">Your data</h4>
+            <table class="table shadow p-3 mb-5 bg-white rounded" >
+
+                <tr class="tab">
+                    <td scope="col" th:text="'You are logged as:  ' + ${user.username} "> </td>
+                    <td scope="col" th:text="'Your email : ' + ${user.email}"></td>
+                    <td scope="col" th:text="'Your gender is : ' + ${user.gender}"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td th:text="'Quantity of your surveys:' + 0"></td>
+                    <td th:text="'Quantity of your surveys:' + 0"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <h4 style="text-align: center">Your last survey</h4>
+            <table class="table shadow p-3 mb-5 bg-white rounded">
+                <tr>
+                    <td scope="col"> Survey Id </td>
+                    <td scope="col"> Survey name </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
 
 
 

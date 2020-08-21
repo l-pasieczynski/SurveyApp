@@ -2,6 +2,8 @@ package pl.coderslab.surveyapp.user;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,10 +16,13 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
 //    @PutMapping("edit/{id}")
 //    public void editUser (@RequestBody User user, @PathVariable Long id) {
@@ -30,7 +35,8 @@ public class UserController {
 //    }
 
     @GetMapping("")
-    public String userHome(){
+    public String userHome(Model m, HttpSession session){
+        m.addAttribute("user",userService.findById((Long) session.getAttribute("userId")));
         return "application/user/user";
     }
 
@@ -58,6 +64,32 @@ public class UserController {
 
         return "login";
     }
+    @GetMapping("/edit/password")
+    public String editUserPassword(Model m){
+
+
+        return "application/user/user-edit-password";
+    }
+    @PostMapping("/edit/password")
+    public String editUserPasswordPost(HttpSession session ,@Valid @RequestParam String oldPassword, String newPassword,
+                                       Model m ){
+        User u = userService.findById((Long) session.getAttribute("userId"));
+        if(!BCrypt.checkpw(oldPassword,u.getPassword())){
+
+            m.addAttribute("pswErr","WRONG OLD PASSWORD");
+            return "application/user/user-edit-password";
+        }
+
+        u.setPassword(passwordEncoder.encode(newPassword));
+        userService.updateUser(u);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.setAuthenticated(false);
+
+
+        return "login";
+
+    }
+
 }
 
 
