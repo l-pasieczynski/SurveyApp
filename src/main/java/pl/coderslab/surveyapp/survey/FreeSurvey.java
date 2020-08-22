@@ -23,6 +23,7 @@ public class FreeSurvey {
     private String name;
     private int questionCount;
     private int numberOfParticipant;
+    private boolean active;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate created;
     @OneToMany(cascade = CascadeType.ALL)

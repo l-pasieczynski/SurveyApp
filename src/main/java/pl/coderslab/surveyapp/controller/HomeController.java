@@ -53,7 +53,7 @@ class HomeController {
 
     @GetMapping("freeSurveys")
     public String getAllFreeSurveys(Model model) {
-        model.addAttribute("allSurveys", surveyFacade.findAllFreeSurveys());
+        model.addAttribute("allSurveys", surveyFacade.findAllActiveFreeSurvey(true));
         return "surveys";
     }
 

@@ -1,7 +1,5 @@
 package pl.coderslab.surveyapp.user;
 
-
-
 import java.util.List;
 
 public interface UserService {
@@ -24,5 +22,7 @@ public interface UserService {
 
     void updateUser(User user);
 
+    List<User> findAllByRequestParam(UserSearch userSearch);
 
+    void deactivate(Long id);
 }

@@ -35,4 +35,9 @@ class FreeSurveyService {
     public void delete(Long id) {
         freeSurveyRepository.deleteById(id);
     }
+
+
+    public List<FreeSurvey> findAllActive(boolean active) {
+        return freeSurveyRepository.findAllByActiveOrderByCreatedDesc(active);
+    }
 }

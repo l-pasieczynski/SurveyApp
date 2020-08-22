@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.surveyapp.role.Role;
 import pl.coderslab.surveyapp.role.RoleRepository;
+import pl.coderslab.surveyapp.survey.Survey;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +74,7 @@ class UserServiceImpl implements UserService {
 
     @Override
     public List<String> findAllUsersEmailAddresses() {
-        List <String> usersEmailAddresses = new ArrayList<>();
+        List<String> usersEmailAddresses = new ArrayList<>();
         userRepository.findAll().forEach(user -> usersEmailAddresses.add(user.getEmail()));
         return usersEmailAddresses;
     }
@@ -85,6 +86,29 @@ class UserServiceImpl implements UserService {
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAllByRequestParam(UserSearch userSearch) {
+
+        //TODO obsługa age
+//        Integer age = userSearch.getAge();
+        String education = userSearch.getEducation();
+        String email = userSearch.getEmail();
+        String gender = userSearch.getGender();
+        String placeOfLiving = userSearch.getPlaceOfLiving();
+        Survey survey = userSearch.getSurvey();
+        String username = userSearch.getUsername();
+        boolean active = userSearch.isActive();
+        List<User> searchedUsers = userRepository.findByParams(education, email, gender, placeOfLiving, survey, username, active);
+        return searchedUsers;
+    }
+
+    @Override
+    public void deactivate(Long id) {
+        User userToDeactivate = userRepository.getOne(id);
+        userToDeactivate.setActive(false);
+        userRepository.save(userToDeactivate);
     }
 
 

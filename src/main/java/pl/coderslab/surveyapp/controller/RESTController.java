@@ -1,6 +1,5 @@
 package pl.coderslab.surveyapp.controller;
 
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
@@ -11,8 +10,6 @@ import pl.coderslab.surveyapp.mail.EmailSender;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.Survey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/")
@@ -71,40 +68,40 @@ public class RESTController {
         modelAndView.setViewName("surveys");
         return modelAndView;
     }
+//
+//    @PostMapping("survey/{id}")
+//    public ModelAndView addFreeSurvey(@RequestBody FreeSurvey freeSurvey) {
+//        surveyFacade.saveFreeSurvey(freeSurvey);
+//        modelAndView.setViewName("surveys");
+//        return modelAndView;
+//    }
 
-    @PostMapping("survey/{id}")
-    public ModelAndView addFreeSurvey(@RequestBody FreeSurvey freeSurvey) {
-        surveyFacade.saveFreeSurvey(freeSurvey);
-        modelAndView.setViewName("surveys");
-        return modelAndView;
-    }
+//    @PostMapping("app/survey/{id}")
+//    public ModelAndView addAppSurvey (@RequestBody Survey survey) {
+//        surveyFacade.saveSurvey(survey);
+//        modelAndView.setViewName("app/survey");
+//        return modelAndView;
+//    }
 
-    @PostMapping("app/survey/{id}")
-    public ModelAndView addAppSurvey (@RequestBody Survey survey) {
-        surveyFacade.saveSurvey(survey);
-        modelAndView.setViewName("app/survey");
-        return modelAndView;
-    }
-
-//    @PostMapping(value = "contact", apllication/json)
+//    @PostMapping(value = "contact", consumes = "application/json", produces = "application/json")
 //    public ModelAndView sendContactMessage(@RequestBody ContactMessage contactMessage) {
 //        emailSender.sendContactForm(contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage());
 //        modelAndView.setViewName("contact");
 //        return modelAndView;
 //    }
 
-    @PostMapping("/app/admin/email")
-    public ModelAndView sendEmail(@RequestBody Email email) {
-
-        Context context = new Context();
-        context.setVariable("header", email.getHeader());
-        context.setVariable("title", email.getTitle());
-        context.setVariable("description", email.getDescription());
-        String body = templateEngine.process("template", context);
-
-        emailSender.sendEmail(email.getUsersEmailAddress(), email.getSubject(), body);
-        modelAndView.setViewName("admin/home");
-        return modelAndView;
-    }
+//    @PostMapping("/app/admin/email")
+//    public ModelAndView sendEmail(@RequestBody Email email) {
+//
+//        Context context = new Context();
+//        context.setVariable("header", email.getHeader());
+//        context.setVariable("title", email.getTitle());
+//        context.setVariable("description", email.getDescription());
+//        String body = templateEngine.process("template", context);
+//
+//        emailSender.sendEmail(email.getUsersEmailAddress(), email.getSubject(), body);
+//        modelAndView.setViewName("admin/home");
+//        return modelAndView;
+//    }
 
 }
