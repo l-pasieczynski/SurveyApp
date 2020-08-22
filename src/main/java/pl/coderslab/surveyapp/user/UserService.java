@@ -1,6 +1,6 @@
 package pl.coderslab.surveyapp.user;
 
-import org.springframework.data.jpa.repository.Query;
+
 
 import java.util.List;
 

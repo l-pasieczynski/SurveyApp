@@ -13,12 +13,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/app/user")
 public class UserController {
     private final UserService userService;
+
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder) {
+    public UserController(UserService userService,  BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -88,6 +89,16 @@ public class UserController {
 
         return "login";
 
+    }
+    @GetMapping("/delete")
+    public String deleteUser(HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.setAuthenticated(false);
+
+        userService.delete((Long)session.getAttribute("userId"));
+
+
+        return "redirect:/register";
     }
 
 }
