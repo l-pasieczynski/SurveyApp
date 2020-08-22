@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header>
+<div th:include="fragments/header.html"></div>
+</header>
+
+
+<body>
+
+<div class="content" >
+
+    <p sty>
+        Some text, again some text ... Some text, again some text ... Some text, again some text ... Some text, again some text ... Some text, again some text ...<br>
+        Some text, again some text ... Some text, again some text ... Some text, again some text ... Some text, again some text ...<br>
+        Some text, again some text ... Some text, again some text ... Some text, again some text ... <br>
+        Some text, again some text ... Some text, again some text ... <br>
+        Some text, again some text ... <br>
+    </p>
+
+</div>
+    <div class="content-line">
+        <h5 class="content">Who we are</h5>
+    </div>
+    <div class="content text-center" style="font-size: 34px">
+        Krzysiek & Lucas
+    </div>
+
+    <div class="content-line">
+        <h5 class="content">What we do </h5>
+    </div>
+    <div class="content">
+        <img src="images/about.png" alt="We create code" height="340" width="430" class="displayed"/>
+    </div>
+</body>
+
+
+<div th:include="fragments/footer.html"></div>

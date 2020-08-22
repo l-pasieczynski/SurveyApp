@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+</head>
+<header>
+    <div th:include="fragments/header.html"></div>
+</header>
+
+<style type="text/css">
+    a:link { color: #000000; text-decoration: none}
+</style>
+
+<body>
+<h1>Survey List for non-logged User</h1>
+<div class="free-survey-list"></div>
+
+<a href="/freeSurveys/1">
+<div class="free-survey-table content">
+    <h1>Car Survey</h1>
+</div>
+</a>
+
+<a href="freeSurveys/2">
+    <div class="free-survey-table content">
+        <h1>Animal Survey</h1>
+    </div>
+</a>
+
+<a href="freeSurveys/3" >
+    <div class="free-survey-table content">
+        <h1>Other stuff Survey</h1>
+    </div>
+</a>
+
+</body>
+
+
+<div th:include="fragments/footer.html"></div>
