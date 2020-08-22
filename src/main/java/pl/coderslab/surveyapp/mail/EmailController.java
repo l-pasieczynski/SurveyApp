@@ -10,6 +10,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import pl.coderslab.surveyapp.user.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,16 +29,17 @@ public class EmailController {
 
     @GetMapping("/email")
     public ModelAndView sendEmail() {
+        Email email = new Email();
+        ArrayList<String> usersEmailList = new ArrayList<>();
+        email.setUsersEmailAddress(usersEmailList);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("email", new Email());
+        modelAndView.addObject("email", email);
         modelAndView.setViewName("admin/email");
         return modelAndView;
     }
 
     @PostMapping("/email")
     public ModelAndView sendEmail(@ModelAttribute("email") Email email) {
-
-        //TODO stworzyć model to wyszukiwania listy użytkowników do których chcemy wyslac email
 
         Context context = new Context();
         context.setVariable("header", email.getHeader());
