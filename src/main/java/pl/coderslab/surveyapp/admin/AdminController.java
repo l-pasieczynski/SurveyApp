@@ -43,13 +43,13 @@ public class AdminController {
     @GetMapping("/users/{id}")
     public String getUserById(@PathVariable Long id, Model model) {
         model.addAttribute("user", adminService.getUserById(id));
-        return "admin/users/userDetails";
+        return "admin/userDetails";
     }
 
-    @PostMapping("/users/{id}/deactivate")
+    @PostMapping("/users/deactivate/{id}")
     public String deactivateUser(@PathVariable Long id) {
         adminService.deactivateUser(id);
-        return "redirect:../admin/users";
+        return "redirect:../";
     }
 
     @GetMapping("/freeSurveys")
