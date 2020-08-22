@@ -2,6 +2,7 @@ package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.surveyapp.EntityNotFoundException;
+import pl.coderslab.surveyapp.user.User;
 
 import java.util.List;
 
@@ -28,5 +29,9 @@ class SurveyService {
 
     public void delete(Long id) {
         surveyRepository.deleteById(id);
+    }
+
+    public List<Survey> findByUser(User user) {
+        return surveyRepository.findAllSurveyByUserOrderByCreatedDesc(user);
     }
 }

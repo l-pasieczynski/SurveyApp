@@ -7,6 +7,7 @@ import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.Survey;
+import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserSearch;
 
 import java.util.ArrayList;
@@ -42,7 +43,9 @@ public class AdminController {
 
     @GetMapping("/users/{id}")
     public String getUserById(@PathVariable Long id, Model model) {
-        model.addAttribute("user", adminService.getUserById(id));
+        User user = adminService.getUserById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("userSurveys", adminService.findSurveysByUser(user));
         return "admin/userDetails";
     }
 

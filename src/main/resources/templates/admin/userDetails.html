@@ -32,20 +32,20 @@
 
     <div class="container">
         <div class="border-3">
-            <h4 style="text-align: center" th:text="'User ' + ${user.username} + ' details'"></h4>
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px" th:text="${user.username} + ' details'"></h2>
 
             <table class="table shadow p-3 mb-5 bg-white rounded" >
                 <tr class="tab">
-                <tr><td>Id:</td><td></td><td th:text="${user.id}"> </td></tr>
-                <tr><td>Username:</td><td th:text="${user.username} "> </td></tr>
-                <tr><td>Email: </td><td th:text="${user.email}"></td></tr>
-                <tr><td>Gender: </td><td th:text="${user.gender}"></td></tr>
-                <tr><td>Date of Birth: </td><td th:text="${user.dateOfBirth}"></td></tr>
-                <tr><td>Balance: </td><td th:text="${user.accountBalance}"></td></tr>
-                <tr><td>Active: </td><td th:text="${user.isActive()}"></td></tr>
-                <tr><td>Education: </td><td th:text="${user.education}"></td></tr>
-                <tr><td>Place of Living: </td><td th:text="${user.placeOfLiving}"></td></tr>
-                <tr><td>Quantity of your surveys: </td><td th:text="${user.survey.size()}"></td></tr>
+                <tr><td>Id: </td><td></td><td th:text="${user.id}"> </td></tr>
+                <tr><td>Username: </td><td></td><td th:text="${user.username} "> </td></tr>
+                <tr><td>Email: </td><td></td><td th:text="${user.email}"></td></tr>
+                <tr><td>Gender: </td><td></td><td th:text="${user.gender}"></td></tr>
+                <tr><td>Date of Birth: </td><td></td><td th:text="${user.dateOfBirth}"></td></tr>
+                <tr><td>Balance: </td><td></td><td th:text="${user.accountBalance}"></td></tr>
+                <tr><td>Active: </td><td></td><td th:text="${user.isActive()}"></td></tr>
+                <tr><td>Education: </td><td></td><td th:text="${user.education}"></td></tr>
+                <tr><td>Place of Living: </td><td></td><td th:text="${user.placeOfLiving}"></td></tr>
+                <tr><td>Quantity of your surveys: </td><td></td><td th:text="${user.survey.size()}"></td></tr>
                     <tr><td>
                         <button class="form submit" style="margin: 5px;">
                             <a th:href="@{'/app/admin/users/'}">
@@ -61,7 +61,7 @@
                         </td>
                         <td>
                             <button class="form submit" style="margin: 5px;">
-                                <a th:href="@{'/app/admin/email'}">
+                                <a th:href="@{'/app/admin/email?emailAddress=' + ${user.email}}">
                                     <span>Send Email</span>
                                 </a>
                             </button>
@@ -71,32 +71,31 @@
             </table>
 
 
-            <h4 style="text-align: center">${user}</h4>
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px" th:text="${user.username} + ' surveys'"></h2>
             <table class="table shadow p-3 mb-5 bg-white rounded">
                 <tr>
-                    <td scope="col"> Survey Id </td>
-                    <td scope="col"> Survey name </td>
+                    <td>Survey Name</td>
+                    <td>Number of Question</td>
+                    <td>Survey Owner</td>
+                    <td>Survey Price</td>
+                    <td>is Active</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <th:block th:each="survey : ${userSurveys}">
+                    <tr class="tab">
+                        <td th:text="${survey.name}"></td>
+                        <td th:text="${survey.questionCount}"></td>
+                        <td th:text="${survey.owner}"></td>
+                        <td th:text="${survey.price}"></td>
+                        <td th:text="${user.isActive()}"></td>
+                        <td>
+                            <button class="form submit" style="margin: 5px;">
+                                <a th:href="@{'/app/users/history/survey/' + ${survey.id}}">
+                                    <span>Check Answear</span>
+                                </a>
+                            </button>
+                    </tr>
+                </th:block>
+
 
             </table>
         </div>

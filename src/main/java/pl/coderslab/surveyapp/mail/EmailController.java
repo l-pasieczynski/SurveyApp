@@ -1,10 +1,8 @@
 package pl.coderslab.surveyapp.mail;
 
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -28,9 +26,12 @@ public class EmailController {
     }
 
     @GetMapping("/email")
-    public ModelAndView sendEmail() {
+    public ModelAndView sendEmail(@RequestParam(required = false) String emailAddress) {
         Email email = new Email();
         ArrayList<String> usersEmailList = new ArrayList<>();
+        if (emailAddress != null){
+            usersEmailList.add(emailAddress);
+        }
         email.setUsersEmailAddress(usersEmailList);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("email", email);

@@ -5,6 +5,7 @@ import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.answer.AnswerService;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.question.QuestionService;
+import pl.coderslab.surveyapp.user.User;
 
 import java.util.List;
 
@@ -75,5 +76,9 @@ public class SurveyFacade {
 
     public void delete(Long id) {
         surveyService.delete(id);
+    }
+
+    public List<Survey> findByUsername(User user) {
+        return surveyService.findByUser(user);
     }
 }
