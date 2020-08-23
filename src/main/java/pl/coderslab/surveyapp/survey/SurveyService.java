@@ -34,4 +34,14 @@ class SurveyService {
     public List<Survey> findByUser(User user) {
         return surveyRepository.findAllSurveyByUserOrderByCreatedDesc(user);
     }
+
+    public void deactivate(Long id) {
+        Survey surveyToDeactivate = surveyRepository.getOne(id);
+        if(surveyToDeactivate.isActive()){
+            surveyToDeactivate.setActive(false);
+        }else {
+            surveyToDeactivate.setActive(true);
+        }
+        surveyRepository.save(surveyToDeactivate);
+    }
 }

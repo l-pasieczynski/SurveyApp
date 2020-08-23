@@ -64,26 +64,26 @@ public class AdminController {
     @GetMapping("/freeSurveys/{id}")
     public String freeSurveysById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("freeSurveys", adminService.findFreeSurveyById(id));
-        return "admin/freeSurveys/freeSurveyDetails";
+        return "admin/freeSurveyDetails";
     }
 
-    @PostMapping("/freeSurveys/{id}/deactivate")
+    @PostMapping("/freeSurveys/deactivate/{id}")
     public String deactivateFreeSurveys(@PathVariable Long id) {
         adminService.deactivateFreeSurvey(id);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
-    @PostMapping("/freeSurveys/{id}/delete")
+    @PostMapping("/freeSurveys/delete/{id}")
     public String deleteFreeSurveys(@PathVariable Long id) {
         adminService.deleteFreeSurvey(id);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/freeSurveys/add")
     public String addFreeSurveys(Model model) {
         model.addAttribute("freeSurveys", new FreeSurvey());
         model.addAttribute("question", new ArrayList<Question>());
-        return "admin/freeSurveys/add/freeSurveysForm";
+        return "admin/add/freeSurveysForm";
     }
 
     @PostMapping("freeSurveys/add")
@@ -105,23 +105,23 @@ public class AdminController {
         return "admin/surveys/surveysDetails";
     }
 
-    @PostMapping("/surveys/{id}/deactivate")
+    @PostMapping("/surveys/deactivate/{id}")
     public String deactivateSurveys(@PathVariable Long id) {
         adminService.deactivateSurvey(id);
-        return "redirect:../admin/surveys";
+        return "redirect:../";
     }
 
-    @PostMapping("/surveys/{id}/delete")
+    @PostMapping("/surveys/delete/{id}")
     public String deleteSurveys(@PathVariable Long id) {
         adminService.deleteSurvey(id);
-        return "redirect:../admin/surveys";
+        return "redirect:../";
     }
 
     @GetMapping("/surveys/add")
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
         model.addAttribute("question", new ArrayList<Question>());
-        return "admin/surveys/add/SurveysForm";
+        return "admin/add/SurveysForm";
     }
 
     @PostMapping("surveys/add")

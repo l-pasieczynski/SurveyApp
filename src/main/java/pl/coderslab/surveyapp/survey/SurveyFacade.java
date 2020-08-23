@@ -48,9 +48,7 @@ public class SurveyFacade {
     }
 
     public void deactivateFreeSurvey(Long id) {
-        FreeSurvey freeSurveyToDeactivate = findFreeSurveyById(id);
-        freeSurveyToDeactivate.setActive(false);
-        freeSurveyService.save(freeSurveyToDeactivate);
+        freeSurveyService.deactivate(id);
     }
 
 
@@ -69,9 +67,7 @@ public class SurveyFacade {
 
 
     public void deactivate(Long id) {
-        Survey surveyToDeactivate = surveyService.findById(id);
-        surveyToDeactivate.setActive(false);
-        surveyService.save(surveyToDeactivate);
+        surveyService.deactivate(id);
     }
 
     public void delete(Long id) {

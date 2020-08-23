@@ -40,4 +40,15 @@ class FreeSurveyService {
     public List<FreeSurvey> findAllActive(boolean active) {
         return freeSurveyRepository.findAllByActiveOrderByCreatedDesc(active);
     }
+
+    public void deactivate(Long id) {
+        FreeSurvey surveyToDeactivate = freeSurveyRepository.getOne(id);
+        if (surveyToDeactivate.isActive()){
+            surveyToDeactivate.setActive(false);
+        } else {
+            surveyToDeactivate.setActive(true);
+        }
+        freeSurveyRepository.save(surveyToDeactivate);
+
+    }
 }
