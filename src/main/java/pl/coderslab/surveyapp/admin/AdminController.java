@@ -3,7 +3,6 @@ package pl.coderslab.surveyapp.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.Survey;
