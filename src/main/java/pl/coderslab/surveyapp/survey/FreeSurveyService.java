@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.surveyapp.question.Question;
 
 import java.util.List;
 
@@ -50,5 +51,10 @@ class FreeSurveyService {
         }
         freeSurveyRepository.save(surveyToDeactivate);
 
+    }
+
+    public List<Question> getQuestionList(Long id) {
+        FreeSurvey one = freeSurveyRepository.getOne(id);
+        return one.getQuestions();
     }
 }

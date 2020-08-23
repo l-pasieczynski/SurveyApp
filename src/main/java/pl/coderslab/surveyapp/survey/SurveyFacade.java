@@ -77,4 +77,16 @@ public class SurveyFacade {
     public List<Survey> findByUsername(User user) {
         return surveyService.findByUser(user);
     }
+
+    public List<Question> findFreeSurveyQuestionList(Long id) {
+        return freeSurveyService.getQuestionList(id);
+    }
+
+    public List<Question> findSurveyQuestionList(Long id) {
+        return surveyService.getQuestionList(id);
+    }
+
+    public List<User> getSurveyUsers(Long id) {
+        return surveyService.getAllUsers(id);
+    }
 }

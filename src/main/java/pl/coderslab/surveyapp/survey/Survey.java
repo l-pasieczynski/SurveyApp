@@ -37,7 +37,7 @@ public class Survey {
     @Future
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate expirationDate;
-    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<Question>();
     @ManyToMany
     private List<User> user;

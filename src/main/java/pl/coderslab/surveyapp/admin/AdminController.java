@@ -64,6 +64,7 @@ public class AdminController {
     @GetMapping("/freeSurveys/{id}")
     public String freeSurveysById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("freeSurveys", adminService.findFreeSurveyById(id));
+        model.addAttribute("questions", adminService.getFreSurveyQuestionList(id));
         return "admin/freeSurveyDetails";
     }
 
@@ -90,7 +91,7 @@ public class AdminController {
     public String addFreeSurveysPost(@ModelAttribute("freeSurveys") FreeSurvey freeSurvey,
                                      @ModelAttribute("question") List<Question> question) {
         adminService.createFreeSurvey(freeSurvey, question);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/surveys")
@@ -102,7 +103,9 @@ public class AdminController {
     @GetMapping("/surveys/{id}")
     public String surveysById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("surveys", adminService.findSurveyById(id));
-        return "admin/surveys/surveysDetails";
+        model.addAttribute("questions", adminService.getSurveyQuestionList(id));
+        model.addAttribute("users", adminService.getSurveyUsers(id));
+        return "admin/surveysDetails";
     }
 
     @PostMapping("/surveys/deactivate/{id}")
@@ -128,7 +131,7 @@ public class AdminController {
     public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
                                  @ModelAttribute("question") List<Question> question){
         adminService.createSurvey(survey, question);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/results")

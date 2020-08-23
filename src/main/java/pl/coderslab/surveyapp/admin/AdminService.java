@@ -84,4 +84,16 @@ class AdminService {
     public List<Survey> findSurveysByUser(User user) {
         return surveyFacade.findByUsername(user);
     }
+
+    public List<Question> getFreSurveyQuestionList(Long id) {
+        return surveyFacade.findFreeSurveyQuestionList(id);
+    }
+
+    public List<Question> getSurveyQuestionList(Long id) {
+        return surveyFacade.findSurveyQuestionList(id);
+    }
+
+    public List<User> getSurveyUsers(Long id) {
+        return surveyFacade.getSurveyUsers(id);
+    }
 }
