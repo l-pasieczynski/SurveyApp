@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/app/survey/create/answer}">
+    <h2 th:text="${surveyTitle}"></h2>
+    <h3 th:text="${question}" ></h3>
+    <th:block th:each="question : ${howMuch}">
+        <h4 th:text="'Please enter answer no' + ${question}"> </h4>
+        <input type="text" name="answers">
+    </th:block>
+
+    <button type="submit" name="action" value="next">Next Question</button>
+    <button type="submit" name="action" value="finish">Finish Creating a save survey</button>
+    </div>
+</form>
+
+</body>
+</html>
