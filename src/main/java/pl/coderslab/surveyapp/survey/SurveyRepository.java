@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 interface SurveyRepository extends JpaRepository <Survey, Long> {
-//    Survey findBySurveyName(String name);
+    Survey findByName(String name);
 }

@@ -29,4 +29,6 @@ class SurveyService {
     public void delete(Long id) {
         surveyRepository.deleteById(id);
     }
+
+    Survey findBySurveyName(String name){return surveyRepository.findByName(name);}
 }

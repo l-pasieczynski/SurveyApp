@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<h2 th:text="${surveyTitle}"></h2>
 
 <form method="post" th:action="@{/app/survey/create}">
     <h4>Question type</h4>
@@ -20,6 +21,7 @@
     <input type="text" name="question">
     <h4>Quantity of answer</h4>
     <input type="number" name="quantityAnswer">
+    <input type="hidden" name="surveyName" th:value="${session.surveyTitle}">
 
     <input type="submit">
     </div>

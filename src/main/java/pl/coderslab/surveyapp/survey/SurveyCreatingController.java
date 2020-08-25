@@ -2,19 +2,18 @@ package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.answer.AnswerService;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.question.QuestionService;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionAttributes("surveyTitle")
 @RequestMapping("/app/survey/create")
 public class SurveyCreatingController {
 
@@ -34,7 +33,8 @@ public class SurveyCreatingController {
     }
 
     @PostMapping("")
-    public String createSurveyFirsStep(Model m, @RequestParam(required = false) String title, String questionType, String question, String quantityAnswer){
+    public String createSurveyFirsStep(Model m, @RequestParam(required = false) String title, String questionType,
+                                       String question, String quantityAnswer, HttpSession session){
         List<Integer> quantity = new ArrayList<>();
         for(int i=0; i<Integer.parseInt(quantityAnswer);i++){
             quantity.add(i+1);
@@ -50,15 +50,21 @@ public class SurveyCreatingController {
         q.setQuestion(question);
         q.setQuestionType(questionType);
         questionService.saveQuestion(q);
-        questions.add(q);
-        survey.setName(title);
-        survey.setQuestions(questions);
-        surveyService.save(survey);
-
+        if(title!=null){
+            questions.add(q);
+            survey.setName(title);
+            survey.setQuestions(questions);
+            surveyService.save(survey);
+        }else {
+           Long id = surveyService.findBySurveyName((String) session.getAttribute("surveyTitle")).getId();
+           surveyService.save(surveyService.findById(id).setQuestions(questions));
+        }
         return ("surveyCreating/surveyCreateSecondStep");
+
+
     }
     @PostMapping("/answer")
-    public String createSurveySecondStep(@RequestParam List<String> answers, String action,String question){
+    public String createSurveySecondStep(Model m,@RequestParam List<String> answers, String action,String question,String surveyName){
         System.out.println(action);
         System.out.println(answers);
         System.out.println(question);
@@ -79,4 +85,7 @@ public class SurveyCreatingController {
     }
 
 
+
+
 }
+
