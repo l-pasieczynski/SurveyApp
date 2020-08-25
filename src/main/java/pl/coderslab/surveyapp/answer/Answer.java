@@ -31,4 +31,8 @@ public class Answer {
     public Answer() {
     }
 
+    public Answer setAnswer(String answer) {
+        this.answer = answer;
+        return this;
+    }
 }

@@ -32,6 +32,7 @@ class SurveyService {
         surveyRepository.deleteById(id);
     }
 
+
     public List<Survey> findByUser(User user) {
         return surveyRepository.findAllSurveyByUserOrderByCreatedDesc(user);
     }
@@ -55,4 +56,7 @@ class SurveyService {
         Survey one = surveyRepository.getOne(id);
         return one.getUser();
     }
+
+    Survey findBySurveyName(String name){return surveyRepository.findByName(name);}
+
 }

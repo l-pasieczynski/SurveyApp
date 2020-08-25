@@ -74,6 +74,7 @@ public class SurveyFacade {
         surveyService.delete(id);
     }
 
+
     public List<Survey> findByUsername(User user) {
         return surveyService.findByUser(user);
     }
@@ -89,4 +90,7 @@ public class SurveyFacade {
     public List<User> getSurveyUsers(Long id) {
         return surveyService.getAllUsers(id);
     }
+
+    Survey findBySurveyName(String name){return surveyService.findBySurveyName(name);}
+
 }

@@ -9,8 +9,12 @@ import java.util.List;
 @Repository
 interface SurveyRepository extends JpaRepository <Survey, Long> {
 
+
     Survey findByName(String name);
 
     List<Survey> findAllSurveyByUserOrderByCreatedDesc(User user);
+
+
+  
 
 }

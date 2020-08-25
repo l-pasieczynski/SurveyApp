@@ -51,4 +51,8 @@ public class Survey {
     public Survey() {
     }
 
+    public Survey setQuestions(List<Question> questions) {
+        this.questions = questions;
+        return this;
+    }
 }
