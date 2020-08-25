@@ -16,4 +16,6 @@ public class QuestionService {
     public void save(List<Question> question) {
         question.forEach(questionRepository::save);
     }
+    public void saveQuestion(Question question) {questionRepository.save(question);}
+    public Question findByQuestion(String question){return questionRepository.findByQuestion(question);}
 }

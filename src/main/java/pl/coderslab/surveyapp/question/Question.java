@@ -26,7 +26,13 @@ public class Question {
     private Survey survey;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Answer> answer;
+    private String questionType;
 
     public Question() {
+    }
+
+    public Question setAnswer(List<Answer> answer) {
+        this.answer = answer;
+        return this;
     }
 }

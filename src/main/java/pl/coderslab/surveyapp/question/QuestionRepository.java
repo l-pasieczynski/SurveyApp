@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 interface QuestionRepository extends JpaRepository<Question, Long> {
+    Question findByQuestion(String question);
 }

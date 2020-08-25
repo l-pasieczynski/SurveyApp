@@ -76,4 +76,6 @@ public class SurveyFacade {
     public void delete(Long id) {
         surveyService.delete(id);
     }
+
+    Survey findBySurveyName(String name){return surveyService.findBySurveyName(name);}
 }
