@@ -107,7 +107,11 @@ class UserServiceImpl implements UserService {
     @Override
     public void deactivate(Long id) {
         User userToDeactivate = userRepository.getOne(id);
-        userToDeactivate.setActive(false);
+        if (userToDeactivate.isActive()){
+            userToDeactivate.setActive(false);
+        } else {
+            userToDeactivate.setActive(true);
+        }
         userRepository.save(userToDeactivate);
     }
 

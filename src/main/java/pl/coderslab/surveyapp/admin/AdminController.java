@@ -3,10 +3,10 @@ package pl.coderslab.surveyapp.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.Survey;
+import pl.coderslab.surveyapp.user.User;
 import pl.coderslab.surveyapp.user.UserSearch;
 
 import java.util.ArrayList;
@@ -42,14 +42,16 @@ public class AdminController {
 
     @GetMapping("/users/{id}")
     public String getUserById(@PathVariable Long id, Model model) {
-        model.addAttribute("user", adminService.getUserById(id));
-        return "admin/users/userDetails";
+        User user = adminService.getUserById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("userSurveys", adminService.findSurveysByUser(user));
+        return "admin/userDetails";
     }
 
-    @PostMapping("/users/{id}/deactivate")
+    @PostMapping("/users/deactivate/{id}")
     public String deactivateUser(@PathVariable Long id) {
         adminService.deactivateUser(id);
-        return "redirect:../admin/users";
+        return "redirect:../";
     }
 
     @GetMapping("/freeSurveys")
@@ -61,33 +63,34 @@ public class AdminController {
     @GetMapping("/freeSurveys/{id}")
     public String freeSurveysById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("freeSurveys", adminService.findFreeSurveyById(id));
-        return "admin/freeSurveys/freeSurveyDetails";
+        model.addAttribute("questions", adminService.getFreSurveyQuestionList(id));
+        return "admin/freeSurveyDetails";
     }
 
-    @PostMapping("/freeSurveys/{id}/deactivate")
+    @PostMapping("/freeSurveys/deactivate/{id}")
     public String deactivateFreeSurveys(@PathVariable Long id) {
         adminService.deactivateFreeSurvey(id);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
-    @PostMapping("/freeSurveys/{id}/delete")
+    @PostMapping("/freeSurveys/delete/{id}")
     public String deleteFreeSurveys(@PathVariable Long id) {
         adminService.deleteFreeSurvey(id);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/freeSurveys/add")
     public String addFreeSurveys(Model model) {
         model.addAttribute("freeSurveys", new FreeSurvey());
         model.addAttribute("question", new ArrayList<Question>());
-        return "admin/freeSurveys/add/freeSurveysForm";
+        return "admin/add/freeSurveysForm";
     }
 
     @PostMapping("freeSurveys/add")
     public String addFreeSurveysPost(@ModelAttribute("freeSurveys") FreeSurvey freeSurvey,
                                      @ModelAttribute("question") List<Question> question) {
         adminService.createFreeSurvey(freeSurvey, question);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/surveys")
@@ -99,33 +102,35 @@ public class AdminController {
     @GetMapping("/surveys/{id}")
     public String surveysById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("surveys", adminService.findSurveyById(id));
-        return "admin/surveys/surveysDetails";
+        model.addAttribute("questions", adminService.getSurveyQuestionList(id));
+        model.addAttribute("users", adminService.getSurveyUsers(id));
+        return "admin/surveysDetails";
     }
 
-    @PostMapping("/surveys/{id}/deactivate")
+    @PostMapping("/surveys/deactivate/{id}")
     public String deactivateSurveys(@PathVariable Long id) {
         adminService.deactivateSurvey(id);
-        return "redirect:../admin/surveys";
+        return "redirect:../";
     }
 
-    @PostMapping("/surveys/{id}/delete")
+    @PostMapping("/surveys/delete/{id}")
     public String deleteSurveys(@PathVariable Long id) {
         adminService.deleteSurvey(id);
-        return "redirect:../admin/surveys";
+        return "redirect:../";
     }
 
     @GetMapping("/surveys/add")
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
         model.addAttribute("question", new ArrayList<Question>());
-        return "admin/surveys/add/SurveysForm";
+        return "admin/add/SurveysForm";
     }
 
     @PostMapping("surveys/add")
     public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
                                  @ModelAttribute("question") List<Question> question){
         adminService.createSurvey(survey, question);
-        return "redirect:../admin/freeSurveys";
+        return "redirect:../";
     }
 
     @GetMapping("/results")

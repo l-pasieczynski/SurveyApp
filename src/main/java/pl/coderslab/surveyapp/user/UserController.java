@@ -101,6 +101,16 @@ public class UserController {
         return "redirect:/register";
     }
 
+    @GetMapping("/calendar")
+    public String calendar(){
+        return "application/calendar";
+    }
+
+    @GetMapping("/team")
+    public String team(){
+        return "application/team";
+    }
+
 }
 
 

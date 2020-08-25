@@ -2,6 +2,8 @@ package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.surveyapp.EntityNotFoundException;
+import pl.coderslab.surveyapp.question.Question;
+import pl.coderslab.surveyapp.user.User;
 
 import java.util.List;
 
@@ -30,5 +32,31 @@ class SurveyService {
         surveyRepository.deleteById(id);
     }
 
+
+    public List<Survey> findByUser(User user) {
+        return surveyRepository.findAllSurveyByUserOrderByCreatedDesc(user);
+    }
+
+    public void deactivate(Long id) {
+        Survey surveyToDeactivate = surveyRepository.getOne(id);
+        if (surveyToDeactivate.isActive()) {
+            surveyToDeactivate.setActive(false);
+        } else {
+            surveyToDeactivate.setActive(true);
+        }
+        surveyRepository.save(surveyToDeactivate);
+    }
+
+    public List<Question> getQuestionList(Long id) {
+        Survey one = surveyRepository.getOne(id);
+        return one.getQuestions();
+    }
+
+    public List<User> getAllUsers(Long id) {
+        Survey one = surveyRepository.getOne(id);
+        return one.getUser();
+    }
+
     Survey findBySurveyName(String name){return surveyRepository.findByName(name);}
+
 }

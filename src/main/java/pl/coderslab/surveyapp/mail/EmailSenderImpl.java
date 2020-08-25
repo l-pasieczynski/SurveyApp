@@ -28,8 +28,8 @@ class EmailSenderImpl implements EmailSender {
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 
-            for (int i =0; i <= to.size(); i++){
-                helper.setTo(to.get(i));
+            for (String email : to){
+                helper.setTo(email);
                 helper.setReplyTo("noreply@surveyapp.com");
                 helper.setSubject(subject);
                 helper.setText(message, true);

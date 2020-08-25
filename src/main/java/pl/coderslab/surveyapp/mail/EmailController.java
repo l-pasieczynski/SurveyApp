@@ -1,15 +1,14 @@
 package pl.coderslab.surveyapp.mail;
 
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import pl.coderslab.surveyapp.user.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,17 +26,21 @@ public class EmailController {
     }
 
     @GetMapping("/email")
-    public ModelAndView sendEmail() {
+    public ModelAndView sendEmail(@RequestParam(required = false) String emailAddress) {
+        Email email = new Email();
+        ArrayList<String> usersEmailList = new ArrayList<>();
+        if (emailAddress != null){
+            usersEmailList.add(emailAddress);
+        }
+        email.setUsersEmailAddress(usersEmailList);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("email", new Email());
+        modelAndView.addObject("email", email);
         modelAndView.setViewName("admin/email");
         return modelAndView;
     }
 
     @PostMapping("/email")
     public ModelAndView sendEmail(@ModelAttribute("email") Email email) {
-
-        //TODO stworzyć model to wyszukiwania listy użytkowników do których chcemy wyslac email
 
         Context context = new Context();
         context.setVariable("header", email.getHeader());

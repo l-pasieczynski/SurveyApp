@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.survey;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.surveyapp.question.Question;
 
 import java.util.List;
 
@@ -39,5 +40,21 @@ class FreeSurveyService {
 
     public List<FreeSurvey> findAllActive(boolean active) {
         return freeSurveyRepository.findAllByActiveOrderByCreatedDesc(active);
+    }
+
+    public void deactivate(Long id) {
+        FreeSurvey surveyToDeactivate = freeSurveyRepository.getOne(id);
+        if (surveyToDeactivate.isActive()){
+            surveyToDeactivate.setActive(false);
+        } else {
+            surveyToDeactivate.setActive(true);
+        }
+        freeSurveyRepository.save(surveyToDeactivate);
+
+    }
+
+    public List<Question> getQuestionList(Long id) {
+        FreeSurvey one = freeSurveyRepository.getOne(id);
+        return one.getQuestions();
     }
 }

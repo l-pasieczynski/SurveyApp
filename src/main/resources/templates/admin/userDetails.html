@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    .free-survey-table {
+        border-radius: 25px;
+        border: 2px solid #007bff;;
+        padding: 10px;
+        width: 100%;
+        height: 50px;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        background-size: 40%;
+        opacity: 0.5;
+        box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 1);
+    }
+</style>
+
+<head th:include="application/fragments-app/app-header.html">
+
+
+    <div class="content-line-app" th:fragment="user-menu">
+        <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-app">
+                <ul class="navbar-nav">
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/surveys}">Surveys</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/freeSurveys}">Free Surveys</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/users}">Users</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/results}">Results</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/email}">Mailbox</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="border-3">
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px" th:text="${user.username} + ' details'"></h2>
+
+            <table class="table" >
+                <tr class="tab">
+                <tr><td>
+                <form method="GET" th:action="@{'/app/admin/users/'}">
+                    <button type="submit" style="margin: 5px" class="form submit free-survey-table">Users List</button>
+                </form>
+                </td>
+                    <td>
+                        <form method="POST" th:action="@{'/app/admin/users/deactivate/' +${user.id}}">
+                            <button type="submit" style="margin: 5px; color: red" class="form submit free-survey-table">Deactivate</button>
+                        </form>
+
+                    </td>
+                    <td>
+                        <button class="form submit free-survey-table" style="margin: 5px;">
+                            <a th:href="@{'/app/admin/email?emailAddress=' + ${user.email}}">
+                                <span>Send Email</span>
+                            </a>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="table shadow p-3 mb-5 bg-white rounded" >
+                <tr class="tab">
+                <tr><td>Id: </td><td></td><td th:text="${user.id}"> </td></tr>
+                <tr><td>Username: </td><td></td><td th:text="${user.username} "> </td></tr>
+                <tr><td>Email: </td><td></td><td th:text="${user.email}"></td></tr>
+                <tr><td>Gender: </td><td></td><td th:text="${user.gender}"></td></tr>
+                <tr><td>Date of Birth: </td><td></td><td th:text="${user.dateOfBirth}"></td></tr>
+                <tr><td>Balance: </td><td></td><td th:text="${user.accountBalance}"></td></tr>
+                <tr><td>Active: </td><td></td><td th:text="${user.isActive()}"></td></tr>
+                <tr><td>Education: </td><td></td><td th:text="${user.education}"></td></tr>
+                <tr><td>Place of Living: </td><td></td><td th:text="${user.placeOfLiving}"></td></tr>
+                <tr><td>Quantity of your surveys: </td><td></td><td th:text="${user.survey.size()}"></td></tr>
+                </tr>
+            </table>
+
+
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px" th:text="${user.username} + ' surveys'"></h2>
+            <table class="table shadow p-3 mb-5 bg-white rounded">
+                <tr>
+                    <td>Survey Name</td>
+                    <td>Number of Question</td>
+                    <td>Survey Owner</td>
+                    <td>Survey Price</td>
+                    <td>is Active</td>
+                </tr>
+                <th:block th:each="survey : ${userSurveys}">
+                    <tr class="tab">
+                        <td th:text="${survey.name}"></td>
+                        <td th:text="${survey.questionCount}"></td>
+                        <td th:text="${survey.owner}"></td>
+                        <td th:text="${survey.price}"></td>
+                        <td th:text="${user.isActive()}"></td>
+                        <td>
+                            <button class="form submit" style="margin: 5px;">
+                                <a th:href="@{'/app/users/history/survey/' + ${survey.id}}">
+                                    <span>Check Answear</span>
+                                </a>
+                            </button>
+                    </tr>
+                </th:block>
+
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+    <div th:include="application/fragments-app/app-footer.html"></div>
+
