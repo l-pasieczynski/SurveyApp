@@ -21,7 +21,8 @@ public class Question {
     private Long id;
     @Column(nullable = false)
     private String question;
-    private String additionalQuestion;
+    private String query;
+    private String imageQuestion;
     @ManyToOne
     private Survey survey;
     @OneToMany(cascade = CascadeType.ALL)
