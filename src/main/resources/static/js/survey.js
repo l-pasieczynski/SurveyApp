@@ -17,6 +17,10 @@ $(function () {
         window.location = "/app/admin/surveys/";
     });
 
+    $("#cancelFS").on("click", function () {
+        window.location = "/app/admin/freeSurveys/";
+    });
+
     surveyTable.on("click", "#deleteQuestion", function () {
         $(this).closest("tr").remove();
     });
