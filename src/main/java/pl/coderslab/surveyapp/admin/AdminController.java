@@ -123,7 +123,7 @@ public class AdminController {
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
         model.addAttribute("question", new ArrayList<Question>());
-        return "admin/add/SurveysForm";
+        return "admin/add/surveysForm";
     }
 
     @PostMapping("surveys/add")

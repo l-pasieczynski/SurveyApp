@@ -73,7 +73,7 @@ public class SurveyCreatingController {
         for(int i=0 ; i<answers.size();i++){
             answerList.add(new Answer().setAnswer(answers.get(i)));
         }
-        questionService.saveQuestion(questionService.findByQuestion(question).setAnswer(answerList));
+//        questionService.saveQuestion(questionService.findByQuestion(question).setAnswer(answerList));
 
         if(action.equals("next")){
             return ("surveyCreating/surveyCreateNextQuestion");
