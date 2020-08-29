@@ -56,7 +56,9 @@ public class SurveyCreatingController {
             survey.setQuestions(questions);
             surveyService.save(survey);
         }else {
+
            Long id = surveyService.findBySurveyName((String) session.getAttribute("surveyTitle")).getId();
+            questions=surveyService.findById(id).getQuestions();
            surveyService.save(surveyService.findById(id).setQuestions(questions));
         }
         return ("surveyCreating/surveyCreateSecondStep");
