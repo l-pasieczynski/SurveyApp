@@ -3,68 +3,72 @@ $(function(){
 
     let form = $("#form");
 
+    refreshSurveyList();
 
-
-
-
-    refreshBookList();
-
-    function refreshBookList(){
-        renderBookList(form);
+    function refreshSurveyList(){
+        renderSurveyList(form);
     }
-
-    function renderBookList(renderingPoint){
+    function renderSurveyList(renderingPoint){
         var url = "http://localhost:8080/survey/rest/getSurvey";
 
-        function getBookListSuccess(survey){
-            // renderingPoint.empty();
-            console.log(survey.name);
-            console.log(survey.questions[0].question);
+        function getSurveyListSuccess(survey){
+
+
 
             let titleDiv = $('<h1 class="survey-title" style="text-align: left">')
             titleDiv.text('Survey title : '+ survey.name)
-            renderingPoint.append(titleDiv)
+            renderingPoint.before(titleDiv)
 
 
                 for( i=0; i<survey.questions.length;i++){
                     let  questionsTitle = survey.questions[i].question;
-                    console.log(survey.questions[i].questionType);
+
                     let questionDiv =$('<h4 class="question-title" style="margin-top: 2%">')
                     questionDiv.text(questionsTitle);
                     titleDiv.append(questionDiv);
-                    console.log(i)
-                    for(let j=0;j<2;j++){
-                        let questionType = survey.questions[i].questionType;
+
+                    let questionType = survey.questions[i].questionType;
+                    if(questionType==="text"){
+
+                        let textInput = $('<input style="margin-top: 4%">')
+                        textInput.attr('type','text')
+                        questionDiv.append("<div>");
+                        questionDiv.append(textInput)
+
+
+
+                    }else{
+
+                    for(let j=0;j<survey.questions[i].answer.length;j++){
+
                         console.log(i);
                         let answerInput = $('<input style="margin-top: 4%">');
                         let answerLabel = $('<label>')
-                        answerLabel.attr('for',j+1);
-                        let answerTitle = survey.questions[i].answer[j].answer;
-                        answerLabel.html(answerTitle);
-                        answerInput.attr('type',questionType)
-                        answerInput.attr('id',j+1);
-                        answerInput.text(answerTitle)
 
-                        if(questionType === "radio"){
-                            answerInput.attr("name",questionsTitle);
-                        }else{
-                            answerInput.attr("name",answerTitle);
+
+                            answerLabel.attr('for',j+1);
+                            let answerTitle = survey.questions[i].answer[j].answer;
+                            answerLabel.html(answerTitle);
+                            answerInput.attr('type',questionType)
+                            answerInput.attr('id',j+1);
+                            answerInput.text(answerTitle)
+
+                            if(questionType === "radio"){
+                                answerInput.attr("name",questionsTitle);
+                            }else{
+                                answerInput.attr("name",answerTitle);
+                            }
+                            answerInput.attr("value",answerTitle);
+                            questionDiv.append("<div>");
+                            questionDiv.append(answerInput).append(answerTitle);
+                            answerInput.append(answerLabel);
+
+
                         }
-                        answerInput.attr("value",answerTitle);
-
-
-                        questionDiv.append("<div>");
-                        questionDiv.append(answerInput).append(answerTitle);
-                        answerInput.append(answerLabel);
-
                     }
-
                 }
-
-
         }
-
-        sendGenericRequest(url, "GET", "json", getBookListSuccess);
+        sendGenericRequest(url, "GET", "json", getSurveyListSuccess);
     }
 
     function sendGenericRequest(url, type, data, successHandlerFn){
