@@ -88,7 +88,7 @@ public class AdminController {
 
     @PostMapping("freeSurveys/add")
     public String addFreeSurveysPost(@ModelAttribute("freeSurveys") FreeSurvey freeSurvey,
-                                     @ModelAttribute("question") List<Question> question) {
+                                     @ModelAttribute("question") ArrayList<Question> question) {
         adminService.createFreeSurvey(freeSurvey, question);
         return "redirect:../";
     }
@@ -128,9 +128,9 @@ public class AdminController {
 
     @PostMapping("surveys/add")
     public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
-                                 @ModelAttribute("question") List<Question> question){
+                                 @ModelAttribute("question") ArrayList<Question> question){
         adminService.createSurvey(survey, question);
-        return "redirect:../";
+        return "redirect:../surveys";
     }
 
     @GetMapping("/results")

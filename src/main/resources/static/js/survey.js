@@ -55,8 +55,14 @@ $(function () {
     });
 
 
-    let newText = "<tr class='tab-new'><td>Question Text</td><td><input type=\"text\" class=\"form\" placeholder=\"name\" th:value=\"${question.name}\" required><br><input type=\"hidden\" th:value=\"${question.questionType}\" th:attr=\"name='questionType[text]'\"></td>" +
-        "<td><button id='deleteDivQuestion'>Del</button></td></tr>";
+    // let newText = "<tr class='tab-new'><td>Question Text</td><td><input type=\"text\" class=\"form\" placeholder=\"name\" th:value=\"${question.name}\" required><br><input type=\"hidden\" th:value=\"${question.questionType}\" th:attr=\"name='questionType[text]'\"></td>" +
+    //     "<td><button id='deleteDivQuestion'>Del</button></td></tr>";
+
+let newText = "<tr class='tab-new'> " +
+    "<td>Question Text</td> " +
+    "<td><input type=\"text\" class=\"form\" placeholder=\"name\" th:field=\"*{name}\" required><br> " +
+    "<input type=\"hidden\" th:field=\"$*{questionType}\" th:attr=\"name='questionType[text]'\"></td> " +
+    "<td><button id='deleteDivQuestion'>Del</button></td></tr>"
 
     let newSelect = "<tr class='tab-new'>" +
         "<div>" +
