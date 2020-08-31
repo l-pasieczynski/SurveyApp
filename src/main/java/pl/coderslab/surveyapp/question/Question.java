@@ -1,6 +1,8 @@
 package pl.coderslab.surveyapp.question;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.survey.Survey;
@@ -14,6 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Question {
 
     @Id
@@ -29,11 +32,11 @@ public class Question {
     private List<Answer> answer;
     private String questionType;
 
-    public Question() {
-    }
-
-    public Question setAnswer(List<Answer> answer) {
-        this.answer = answer;
-        return this;
-    }
+//    public Question() {
+//    }
+//
+//    public Question setAnswer(List<Answer> answer) {
+//        this.answer = answer;
+//        return this;
+//    }
 }
