@@ -1,37 +1,90 @@
+
 $(function(){
 
-    let addSurvey = $('#addSurvey');
-    let visible = $('#visible');
-    let radio = $('#radio');
-    let surveyform = $('#survey-form');
-    let radioquestion = "costam";
+    let form = $("#form");
 
-    addSurvey.on('click',visibles);
+    refreshSurveyList();
 
-    function visibles(){
-        visible.toggleClass("btn-visible")
-
+    function refreshSurveyList(){
+        renderSurveyList(form);
     }
-    radio.on('click',addRadio).one('click',addRadioTitle);
+    function renderSurveyList(renderingPoint){
+        var url = "http://localhost:8080/survey/rest/getSurvey";
 
-    function addRadioTitle(){
-        let radioDiv =$('<dvi>' +
-            '<legend>' +
-            '<input type="text" placeholder="write question"></legend></dvi>')
-        surveyform.after(radioDiv)
+        function getSurveyListSuccess(survey){
+
+
+
+            let titleDiv = $('<h1 class="survey-title" style="text-align: left">')
+            titleDiv.text('Survey title : '+ survey.name)
+            renderingPoint.before(titleDiv)
+
+
+                for( i=0; i<survey.questions.length;i++){
+                    let  questionsTitle = survey.questions[i].question;
+
+                    let questionDiv =$('<h4 class="question-title" style="margin-top: 2%">')
+                    questionDiv.text(questionsTitle);
+                    titleDiv.append(questionDiv);
+
+                    let questionType = survey.questions[i].questionType;
+                    if(questionType==="text"){
+
+                        let textInput = $('<input style="margin-top: 4%">')
+                        textInput.attr('type','text')
+                        questionDiv.append("<div>");
+                        questionDiv.append(textInput)
+
+
+
+                    }else{
+
+                    for(let j=0;j<survey.questions[i].answer.length;j++){
+
+                        console.log(i);
+                        let answerInput = $('<input style="margin-top: 4%">');
+                        let answerLabel = $('<label>')
+
+
+                            answerLabel.attr('for',j+1);
+                            let answerTitle = survey.questions[i].answer[j].answer;
+                            answerLabel.html(answerTitle);
+                            answerInput.attr('type',questionType)
+                            answerInput.attr('id',j+1);
+                            answerInput.text(answerTitle)
+
+                            if(questionType === "radio"){
+                                answerInput.attr("name",questionsTitle);
+                            }else{
+                                answerInput.attr("name",answerTitle);
+                            }
+                            answerInput.attr("value",answerTitle);
+                            questionDiv.append("<div>");
+                            questionDiv.append(answerInput).append(answerTitle);
+                            answerInput.append(answerLabel);
+
+
+                        }
+                    }
+                }
+        }
+        sendGenericRequest(url, "GET", "json", getSurveyListSuccess);
     }
 
-    function addRadio(){
-        let newRadio = $('<div><input type="radio" id="radio-primary"><span id="spanRadio">AddAnswer</span></div>')
-        surveyform.after(newRadio);
-
+    function sendGenericRequest(url, type, data, successHandlerFn){
+        $.ajax({
+            url : url,
+            type : type,
+            data : data === undefined ? "" : JSON.stringify(data),
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+        }).done(function(dataReturnedByServer){
+            if(successHandlerFn !== undefined){
+                successHandlerFn(dataReturnedByServer);
+            }
+        }).fail(function(xhr, status, err){
+            console.log(xhr, status, err);
+        });
     }
-    $('#spanRadio').on('click',addAnswer);
-
-    function addAnswer(){
-        $('#radio-primary').prop('value','ala');
-    }
-
-
 
 });
