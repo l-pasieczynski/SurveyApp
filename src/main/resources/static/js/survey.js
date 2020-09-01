@@ -54,15 +54,71 @@ $(function () {
         last.after(newCheck);
     });
 
+    $("#saveBtn").submit(function (event) {
+        event.preventDefault();
+        ajaxPost();
+    });
+
+    function questionList() {
+
+        let questionArray = [];
+
+        let question = {
+            question: $("#question").val(),
+            query: $("#query").val(),
+            imageQuestion: $("#additionalQuestion").val(),
+            questionType: $("#type").val()
+        };
+
+        $('#question').each(function () {
+            questionArray.push(this.question)
+        });
+
+        return questionArray;
+        }
+
+
+    function ajaxPost () {
+
+
+
+
+        let survey = {
+            name: $("#name").val(),
+            questions: questionList()
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType : "application/json; charset=utf-8",
+            url: "http://localhost:8080/app/admin/surveys/add",
+            data: JSON.stringify(survey),
+            dataType:'json',
+        }).done(function(dataReturnedByServer){
+            if(successHandlerFn !== undefined){
+                successHandlerFn(dataReturnedByServer);
+            }
+        }).fail(function(xhr, status, err){
+            console.log(xhr, status, err);
+        });
+
+    }
+
 
     // let newText = "<tr class='tab-new'><td>Question Text</td><td><input type=\"text\" class=\"form\" placeholder=\"name\" th:value=\"${question.name}\" required><br><input type=\"hidden\" th:value=\"${question.questionType}\" th:attr=\"name='questionType[text]'\"></td>" +
     //     "<td><button id='deleteDivQuestion'>Del</button></td></tr>";
 
-let newText = "<tr class='tab-new'> " +
-    "<td>Question Text</td> " +
-    "<td><input type=\"text\" class=\"form\" placeholder=\"name\" th:field=\"*{name}\" required><br> " +
-    "<input type=\"hidden\" th:field=\"$*{questionType}\" th:attr=\"name='questionType[text]'\"></td> " +
-    "<td><button id='deleteDivQuestion'>Del</button></td></tr>"
+    let newText = "<tr class='tab-new'> " +
+        "<td>Question Text</td> " +
+        "<td><input type='text' class='form' placeholder='name' name='question' id='question' required><br> " +
+        "<input type='hidden' name='questionType' value='text' id='type'></td> " +
+        "<td><button id='deleteDivQuestion'>Del</button></td></tr>"
+
+    // let newText = "<tr class='tab-new'> " +
+    //     "<td>Question Text</td> " +
+    //     "<td><input type=\"text\" class=\"form\" placeholder=\"name\" th:field=\"*{name}\" required><br> " +
+    //     "<input type=\"hidden\" th:field=\"$*{questionType}\" th:attr=\"name='questionType[text]'\"></td> " +
+    //     "<td><button id='deleteDivQuestion'>Del</button></td></tr>"
 
     let newSelect = "<tr class='tab-new'>" +
         "<div>" +

@@ -122,16 +122,16 @@ public class AdminController {
     @GetMapping("/surveys/add")
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
-        model.addAttribute("question", new ArrayList<Question>());
+//        model.addAttribute("question", new ArrayList<Question>());
         return "admin/add/surveysForm";
     }
 
-    @PostMapping("surveys/add")
-    public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
-                                 @ModelAttribute("question") ArrayList<Question> question){
-        adminService.createSurvey(survey, question);
-        return "redirect:../surveys";
-    }
+//    @PostMapping("surveys/add")
+//    public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
+//                                 @ModelAttribute("question") ArrayList<Question> question){
+//        adminService.createSurvey(survey, question);
+//        return "redirect:../surveys";
+//    }
 
     @GetMapping("/results")
     public String results(Model model) {

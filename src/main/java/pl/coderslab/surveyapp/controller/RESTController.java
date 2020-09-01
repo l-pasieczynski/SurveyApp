@@ -1,5 +1,6 @@
 package pl.coderslab.surveyapp.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
@@ -7,25 +8,33 @@ import org.thymeleaf.context.Context;
 import pl.coderslab.surveyapp.mail.ContactMessage;
 import pl.coderslab.surveyapp.mail.Email;
 import pl.coderslab.surveyapp.mail.EmailSender;
+import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.survey.FreeSurvey;
 import pl.coderslab.surveyapp.survey.Survey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/")
 public class RESTController {
 
     private final SurveyFacade surveyFacade;
-    private final EmailSender emailSender;
-    private final TemplateEngine templateEngine;
 
     public RESTController(SurveyFacade surveyFacade, EmailSender emailSender, TemplateEngine templateEngine) {
         this.surveyFacade = surveyFacade;
-        this.emailSender = emailSender;
-        this.templateEngine = templateEngine;
     }
 
     private ModelAndView modelAndView = new ModelAndView();
+
+    @PostMapping(value = "/app/admin/surveys/add", consumes= MediaType.APPLICATION_JSON_VALUE ,headers = "content-type=application/x-www-form-urlencoded")
+    public ModelAndView addAppSurvey (@ModelAttribute ("survey") Survey survey, @ModelAttribute ("questions") ArrayList<Question> question) {
+        System.out.println(survey.toString());
+        System.out.println(question);
+        surveyFacade.saveSurvey(survey, question);
+        modelAndView.setViewName("redirect:../surveys");
+        return modelAndView;
+    }
 
 
     @GetMapping("/surveys")
@@ -68,18 +77,12 @@ public class RESTController {
         modelAndView.setViewName("surveys");
         return modelAndView;
     }
+
 //
 //    @PostMapping("survey/{id}")
 //    public ModelAndView addFreeSurvey(@RequestBody FreeSurvey freeSurvey) {
 //        surveyFacade.saveFreeSurvey(freeSurvey);
 //        modelAndView.setViewName("surveys");
-//        return modelAndView;
-//    }
-
-//    @PostMapping("app/survey/{id}")
-//    public ModelAndView addAppSurvey (@RequestBody Survey survey) {
-//        surveyFacade.saveSurvey(survey);
-//        modelAndView.setViewName("app/survey");
 //        return modelAndView;
 //    }
 
@@ -103,5 +106,6 @@ public class RESTController {
 //        modelAndView.setViewName("admin/home");
 //        return modelAndView;
 //    }
+
 
 }
