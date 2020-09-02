@@ -98,14 +98,73 @@
                             </td>
                         </div>
                     </tr>
-                    <th:block th:each="question : ${question}">
-                        <tr class="tab-new question">
-                            <td hidden></td>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Text</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question1.question}"
+                                       name="question" required><br>
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Text</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question2.question}"
+                                       name="question" required><br>
+                            </td>
+                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
+                        </div>
+                    </tr>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Select</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question3.question}"
+                                       name="question" required><br>
+                            </td>
+                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
+                        </div>
+                    </tr>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Text</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question4.question}"
+                                       name="question" required><br>
+                            </td>
+                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
+                        </div>
+                    </tr>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Radio</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question5.question}"
+                                       name="question" required><br>
+                            </td>
+                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
+                        </div>
+                    </tr>
+
+                    <tr class="tab-new question" id="question">
+                        <div id="questionDiv">
+                            <td scope="col"> Question Check</td>
+                            <td>
+                                <input type="text" class="form" placeholder="name" th:value="${question6.question}"
+                                       name="question" required><br>
+                            </td>
+                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
+                        </div>
+                    </tr>
 
 
-                        </tr>
-
-                    </th:block>
 
 
                     <tr>
