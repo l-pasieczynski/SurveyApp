@@ -36,7 +36,8 @@ $(function () {
     text.on("click", function () {
         last = findLast();
         last.after(newText)
-
+        counter++;
+        console.log(questionList())
     });
 
     select.on("click", function () {
@@ -63,54 +64,49 @@ $(function () {
 
         let questionArray = [];
 
-        let question = {
-            question: $("#question").val(),
-            query: $("#query").val(),
-            imageQuestion: $("#additionalQuestion").val(),
-            questionType: $("#type").val()
-        };
-
-        $('#question').each(function () {
-            questionArray.push(this.question)
-        });
-
-        return questionArray;
+        for (let i = 0; i < counter; i++) {
+            $('#question').each(function () {
+                questionArray.push($(this).val());
+            });
+            console.log(questionArray)
         }
 
+        return questionArray;
+    }
 
-    function ajaxPost () {
 
+    function ajaxPost() {
+
+        let questList = questionList();
+        let jsonStr = questList.toString();
 
 
 
         let survey = {
             name: $("#name").val(),
-            questions: questionList()
+            questions: jsonStr
         };
 
         $.ajax({
             type: "POST",
-            contentType : "application/json; charset=utf-8",
+            contentType: "application/json; charset=utf-8",
             url: "http://localhost:8080/app/admin/surveys/add",
             data: JSON.stringify(survey),
-            dataType:'json',
-        }).done(function(dataReturnedByServer){
-            if(successHandlerFn !== undefined){
+            dataType: 'json',
+        }).done(function (dataReturnedByServer) {
+            if (successHandlerFn !== undefined) {
                 successHandlerFn(dataReturnedByServer);
             }
-        }).fail(function(xhr, status, err){
+        }).fail(function (xhr, status, err) {
             console.log(xhr, status, err);
         });
 
     }
 
 
-    // let newText = "<tr class='tab-new'><td>Question Text</td><td><input type=\"text\" class=\"form\" placeholder=\"name\" th:value=\"${question.name}\" required><br><input type=\"hidden\" th:value=\"${question.questionType}\" th:attr=\"name='questionType[text]'\"></td>" +
-    //     "<td><button id='deleteDivQuestion'>Del</button></td></tr>";
-
     let newText = "<tr class='tab-new'> " +
         "<td>Question Text</td> " +
-        "<td><input type='text' class='form' placeholder='name' name='question' id='question' required><br> " +
+        "<td><input type='text' class='form' placeholder='name' name='question' value='' id='question' required><br> " +
         "<input type='hidden' name='questionType' value='text' id='type'></td> " +
         "<td><button id='deleteDivQuestion'>Del</button></td></tr>"
 

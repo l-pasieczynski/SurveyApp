@@ -1,5 +1,7 @@
 package pl.coderslab.surveyapp.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,7 @@ import pl.coderslab.surveyapp.survey.Survey;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -27,14 +30,16 @@ public class RESTController {
 
     private ModelAndView modelAndView = new ModelAndView();
 
-    @PostMapping(value = "/app/admin/surveys/add", consumes= MediaType.APPLICATION_JSON_VALUE ,headers = "content-type=application/x-www-form-urlencoded")
-    public ModelAndView addAppSurvey (@ModelAttribute ("survey") Survey survey, @ModelAttribute ("questions") ArrayList<Question> question) {
-        System.out.println(survey.toString());
-        System.out.println(question);
-        surveyFacade.saveSurvey(survey, question);
-        modelAndView.setViewName("redirect:../surveys");
-        return modelAndView;
-    }
+//    @PostMapping(value = "/app/admin/surveys/add", consumes= MediaType.APPLICATION_JSON_VALUE ,headers = "content-type=application/x-www-form-urlencoded")
+//    public ModelAndView addAppSurvey (@ModelAttribute Survey survey){
+//        System.out.println(survey.toString());
+//        System.out.println(survey.getQuestions());
+//        ObjectMapper mapper = new ObjectMapper();
+//        List<Question> questionJsonList = mapper.readValue(survey.getQuestions().toString(), new TypeReference<List<Question>>(){});
+//        surveyFacade.saveSurvey(survey, survey.getQuestions());
+//        modelAndView.setViewName("redirect:../surveys");
+//        return modelAndView;
+//    }
 
 
     @GetMapping("/surveys")

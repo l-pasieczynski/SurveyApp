@@ -122,7 +122,7 @@ public class AdminController {
     @GetMapping("/surveys/add")
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
-//        model.addAttribute("question", new ArrayList<Question>());
+        model.addAttribute("question", new ArrayList<Question>());
         return "admin/add/surveysForm";
     }
 
