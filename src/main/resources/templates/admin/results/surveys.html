@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+            integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+            crossorigin="anonymous"></script>
+
+    <script th:src="@{/js/analytics.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/analytics.css}" type="text/css">
+
+</head>
+
 
 <style>
     .free-survey-table {
@@ -47,22 +60,39 @@
 
     <div class="container">
         <div class="border-3">
-            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px" th:text="${result.name} + ' results'"></h2>
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px"
+                th:text="${result.name} + ' results'"></h2>
 
-    <table class="table shadow p-3 mb-5 bg-white rounded" >
-        <tr class="tab">
-        <tr><td>Survey name: </td><td></td><td th:text="${result.name} "> </td></tr>
-        <tr><td>Number of Question: </td><td></td><td th:text="${result.questionCount}"></td></tr>
-        <tr><td>Number of Participant: </td><td></td><td th:text="${result.numberOfParticipant}"></td></tr>
+            <table class="table shadow p-3 mb-5 bg-white rounded">
+                <tr class="tab">
+                <tr>
+                    <td>Survey name:</td>
+                    <td></td>
+                    <td th:text="${result.name} "></td>
+                </tr>
+                <tr>
+                    <td>Number of Question:</td>
+                    <td></td>
+                    <td th:text="${result.questionCount}"></td>
+                </tr>
+                <tr>
+                    <td>Number of Participant:</td>
+                    <td></td>
+                    <td th:text="${result.numberOfParticipant}"></td>
+                </tr>
+                <tr>
 
-<!--        <th:block th:each="q : ${questions}">-->
-<!--            <tr class="tab">-->
-<!--            <tr><td th:text="${q.question}"></td></tr>-->
-<!--            <tr><td th:text="${q.imageQuestion}"></td></tr>-->
-<!--            </tr>-->
-<!--        </th:block>-->
-        </tr>
-    </table>
+                    <div class="analytics-div-size" style="margin-right: auto; margin-left: auto">
+                        <canvas id="myChart" class="analytics-canvas-size"></canvas>
+                    </div>
+
+                            <th:block th:each="q : ${result[]}">
+                                <tr class="tab">
+<!--                                <tr><td th:text="${q.questionCount}"></td></tr>-->
+                                </tr>
+                            </th:block>
+                </tr>
+            </table>
 
             <div id="cancel" class="free-survey-table"
                  style="margin: 5px;text-align: center; font-size: 30px; color: red">CANCEL
@@ -74,7 +104,6 @@
 
         </div>
     </div>
-
 
 
     <div th:include="application/fragments-app/app-footer"></div>

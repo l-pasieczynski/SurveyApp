@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script src="https://unpkg.com/jquery"></script>
-<!--    <script th:src="@{/js/survey.js}"></script>-->
+    <!--    <script th:src="@{/js/survey.js}"></script>-->
 </head>
 
 <style>
@@ -88,102 +88,135 @@
 
                     <tr class="tab-new question" id="surveyName">
                         <div id="title">
-                            <td scope="col"> Survey Name</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${surveys.name}"
-                                       name="name" required><br>
-                            </td>
-                            <td>
-                                <input type="hidden">
-                            </td>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Text</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question1.question}"
-                                       name="question" required><br>
-                            </td>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Text</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question2.question}"
-                                       name="question" required><br>
-                            </td>
-                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Select</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question3.question}"
-                                       name="question" required><br>
-                            </td>
-                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Text</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question4.question}"
-                                       name="question" required><br>
-                            </td>
-                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Radio</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question5.question}"
-                                       name="question" required><br>
-                            </td>
-                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
-                        </div>
-                    </tr>
-
-                    <tr class="tab-new question" id="question">
-                        <div id="questionDiv">
-                            <td scope="col"> Question Check</td>
-                            <td>
-                                <input type="text" class="form" placeholder="name" th:value="${question6.question}"
-                                       name="question" required><br>
-                            </td>
-                            <td><button id='deleteDivQuestion'>Del</button></td></tr>
-                        </div>
-                    </tr>
-
-
-
-
                     <tr>
+                        <td scope="col"> Survey Details</td>
                         <td>
-                            <button type="submit"
-                                    style="margin: 5px; color: #007bff; font-weight: bold; font-size: 30px"
-                                    class="form submit free-survey-table">Save
-                            </button>
+                            <input type="text" class="form" placeholder="name" th:value="${surveys.name}" name="name"
+                                   required><br>
                         </td>
                     </tr>
-                </form>
-            </table>
-
-            <div id="cancel" class="free-survey-table"
-                 style="margin: 5px;text-align: center; font-size: 30px; color: red">CANCEL
-            </div>
-
-
+                    <tr>
+                        <td scope="col"> Survey Owner</td>
+                        <td>
+                            <input type="text" class="form" placeholder="owner" th:value="${surveys.owner}"
+                                   name="owner"><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Price</td>
+                        <td>
+                            <input type="number" class="form" placeholder="10.00" th:value="${surveys.price}"
+                                   name="price"><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Expire</td>
+                        <td>
+                            <input type="date" class="form"th:value="${surveys.expirationDate}"
+                                   name="price"><br>
+                        </td>
+                    </tr>
         </div>
+        </tr>
+
+        <tr class="tab-new question" id="question">
+            <div id="questionDiv">
+                <td scope="col"> Question Text</td>
+                <td th:object="${question1}">
+                    <input type="text" class="form" placeholder="name" th:field="${question1.question}"
+                           name="question" required><br>
+                </td>
+            </div>
+        </tr>
+
+        <tr class="tab-new question" id="question">
+            <div id="questionDiv">
+                <td scope="col"> Question Text</td>
+                <td>
+                    <input type="text" class="form" placeholder="name" th:value="${question2.question}"
+                           name="question"><br>
+                </td>
+                <td>
+                    <button id='deleteDivQuestion'>Del</button>
+                </td>
+        </tr>
+    </div>
+    </tr>
+
+    <tr class="tab-new question" id="question">
+        <div id="questionDiv">
+            <td scope="col"> Question Select</td>
+            <td>
+                <input type="text" class="form" placeholder="name" th:value="${question3.question}"
+                       name="question"><br>
+            </td>
+            <td>
+                <button id='deleteDivQuestion'>Del</button>
+            </td>
+    </tr>
+    </div>
+    </tr>
+
+    <tr class="tab-new question" id="question">
+        <div id="questionDiv">
+            <td scope="col"> Question Text</td>
+            <td>
+                <input type="text" class="form" placeholder="name" th:value="${question4.question}"
+                       name="question"><br>
+            </td>
+            <td>
+                <button id='deleteDivQuestion'>Del</button>
+            </td>
+    </tr>
+    </div>
+    </tr>
+
+    <tr class="tab-new question" id="question">
+        <div id="questionDiv">
+            <td scope="col"> Question Radio</td>
+            <td>
+                <input type="text" class="form" placeholder="name" th:value="${question5.question}"
+                       name="question"><br>
+            </td>
+            <td>
+                <button id='deleteDivQuestion'>Del</button>
+            </td>
+    </tr>
+    </div>
+    </tr>
+
+    <tr class="tab-new question" id="question">
+        <div id="questionDiv">
+            <td scope="col"> Question Check</td>
+            <td>
+                <input type="text" class="form" placeholder="name" th:value="${question6.question}"
+                       name="question"><br>
+            </td>
+            <td>
+                <button id='deleteDivQuestion'>Del</button>
+            </td>
+    </tr>
+    </div>
+    </tr>
+
+
+    <tr>
+        <td>
+            <button type="submit"
+                    style="margin: 5px; color: #007bff; font-weight: bold; font-size: 30px"
+                    class="form submit free-survey-table">Save
+            </button>
+        </td>
+    </tr>
+    </form>
+    </table>
+
+    <div id="cancel" class="free-survey-table"
+         style="margin: 5px;text-align: center; font-size: 30px; color: red">CANCEL
+    </div>
+
+
+    </div>
 
     </div>
 
