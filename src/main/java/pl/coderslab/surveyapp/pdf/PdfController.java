@@ -25,7 +25,7 @@ public class PdfController {
         this.surveyFacade = surveyFacade;
     }
 
-    @GetMapping(value = "/results/survey/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    @GetMapping(value = "/survey/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> createPdf(@PathVariable Long id){
 
         List<Answer> results = surveyFacade.findAllAnswerBySurveyId(id);
@@ -33,7 +33,7 @@ public class PdfController {
         ByteArrayInputStream bis = GeneratePdfReport.resultsReport(results);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=resultsreport.pdf");
+        headers.add("Content-Disposition", "inline; filename=resultsReport.pdf");
 
         return ResponseEntity
                 .ok()

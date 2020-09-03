@@ -82,7 +82,8 @@ class AdminService {
     }
 
     public List<Survey> findSurveysByUser(User user) {
-        return surveyFacade.findByUsername(user);
+        User byId = userService.findById(user.getId());
+        return byId.getSurvey();
     }
 
     public List<Question> getFreSurveyQuestionList(Long id) {

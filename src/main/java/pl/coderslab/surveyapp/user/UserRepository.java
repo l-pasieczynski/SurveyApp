@@ -20,4 +20,5 @@ interface UserRepository extends JpaRepository<User, Long> {
             "(:survey is null or u.survey = :survey) and" +
             "(:active is null or u.active = :active)")
     List<User> findByParams(String education, String email, String gender, String placeOfLiving, Survey survey, String username, boolean active);
+
 }
