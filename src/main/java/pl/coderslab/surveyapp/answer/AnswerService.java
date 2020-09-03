@@ -13,6 +13,11 @@ public class AnswerService {
         this.answerRepository = answerRepository;
     }
 
+    public List<Answer> findAll(){
+        return answerRepository.findAll();
+    }
+
+
     public void save(List<Answer> answer) {
         answer.forEach(answerRepository::save);
     }
