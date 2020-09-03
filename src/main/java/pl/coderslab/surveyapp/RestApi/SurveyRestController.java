@@ -46,7 +46,7 @@ public class SurveyRestController {
         q1.setAnswer(answers1);
 
         Question q2 = new Question();
-        q2.setQuestion("co lubisz najbardziej");
+        q2.setQuestion("Co lubisz najbardziej");
         q2.setQuestionType("text");
 
         List<Question> questions = new ArrayList<>();
