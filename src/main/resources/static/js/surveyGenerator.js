@@ -2,6 +2,7 @@
 $(function(){
 
     let form = $("#form");
+    let table=$("#survey-table");
 
     refreshSurveyList();
 
@@ -22,26 +23,27 @@ $(function(){
 
                 for( i=0; i<survey.questions.length;i++){
                     let  questionsTitle = survey.questions[i].question;
-
+                    let trTitle=$("<tr><th></th></tr>")
                     let questionDiv =$('<h4 class="question-title" style="margin-top: 2%">')
                     questionDiv.text(questionsTitle);
-                    titleDiv.append(questionDiv);
+
+                    trTitle.find("th").append(questionDiv);
+                    table.append(trTitle);
 
                     let questionType = survey.questions[i].questionType;
+
                     if(questionType==="text"){
 
                         let textInput = $('<input style="margin-top: 4%">')
                         textInput.attr('type','text')
                         questionDiv.append("<div>");
-                        questionDiv.append(textInput)
-
-
+                        questionDiv.append(textInput);
 
                     }else{
 
                     for(let j=0;j<survey.questions[i].answer.length;j++){
 
-                        console.log(i);
+
                         let answerInput = $('<input style="margin-top: 4%">');
                         let answerLabel = $('<label>')
 
