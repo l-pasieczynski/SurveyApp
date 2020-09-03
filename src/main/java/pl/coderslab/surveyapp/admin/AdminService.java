@@ -95,6 +95,6 @@ class AdminService {
     }
 
     public List<User> getSurveyUsers(Long id) {
-        return surveyFacade.getSurveyUsers(id);
+        return surveyFacade.findById(id).getUser();
     }
 }

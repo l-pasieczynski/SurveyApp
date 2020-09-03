@@ -102,19 +102,20 @@
                 <canvas id="radarChart" class="analytics-canvas-size"></canvas>
             </div>
 
+
+            <div>
+                <button class="form submit free-survey-table" style="margin: 5px; background-color: white">
+                    <a style="text-decoration: none" th:href="@{'/app/admin/surveys/pdf/' + ${result.id}}">
+                        <span style="font-size: 40px">CREATE PDF</span>
+                    </a>
+                </button>
+            </div>
+
+
             <div id="cancel" class="free-survey-table"
-                 style="margin: 5px;text-align: center; font-size: 30px; color: red">CANCEL
+                 style="margin: 10px;text-align: center; font-size: 30px; color: red">CANCEL
             </div>
 
-            <!--            <div id="pdf" class="free-survey-table"-->
-            <!--                 style="margin: 5px;text-align: center; font-size: 30px; color: lawngreen">CREATE PDF-->
-            <!--            </div>-->
-
-            <div class="free-survey-table">
-                <a style="text-decoration: none" th:href="@{'/app/admin/surveys/pdf/' + ${result.id}}">
-                    <span style="text-align: center; font-size: 40px; color: lawngreen">CREATE PDF</span>
-                </a>
-            </div>
 
         </div>
     </div>
