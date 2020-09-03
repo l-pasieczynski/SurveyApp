@@ -93,4 +93,9 @@ public class SurveyFacade {
 
     Survey findBySurveyName(String name){return surveyService.findBySurveyName(name);}
 
+    public List<Answer> findAllAnswerBySurveyId(Long id) {
+        Survey byId = surveyService.findById(id);
+        List<Question> questions = byId.getQuestions();
+        return answerService.findAllByQuestion(questions);
+    }
 }

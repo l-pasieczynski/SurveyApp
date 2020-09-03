@@ -122,14 +122,36 @@ public class AdminController {
     @GetMapping("/surveys/add")
     public String addSurveys(Model model) {
         model.addAttribute("surveys", new Survey());
-        model.addAttribute("question", new ArrayList<Question>());
+        model.addAttribute("question1", new Question());
+        model.addAttribute("question2", new Question());
+        model.addAttribute("question3", new Question());
+        model.addAttribute("question4", new Question());
+        model.addAttribute("question5", new Question());
+        model.addAttribute("question6", new Question());
         return "admin/add/surveysForm";
     }
 
     @PostMapping("surveys/add")
     public String addSurveysPost(@ModelAttribute("surveys") Survey survey,
-                                 @ModelAttribute("question") ArrayList<Question> question){
-        adminService.createSurvey(survey, question);
+                                 @ModelAttribute("question1") Question question1,
+                                 @ModelAttribute("question2") Question question2,
+                                 @ModelAttribute("question3") Question question3,
+                                 @ModelAttribute("question4") Question question4,
+                                 @ModelAttribute("question5") Question question5,
+                                 @ModelAttribute("question6") Question question6){
+
+        List<Question> questions = new ArrayList<>();
+        questions.add(question1);
+        questions.add(question2);
+        questions.add(question3);
+        questions.add(question4);
+        questions.add(question5);
+        questions.add(question6);
+
+        survey.setQuestionCount(questions.size());
+        survey.setQuestions(questions);
+        survey.setActive(true);
+        adminService.createSurvey(survey, questions);
         return "redirect:../surveys";
     }
 
@@ -141,12 +163,14 @@ public class AdminController {
     }
 
     @GetMapping("/results/survey/{id}")
-    public String surveyResults(@PathVariable Long id) {
+    public String surveyResults(@PathVariable Long id, Model model) {
+        model.addAttribute("result", adminService.findSurveyById(id));
         return "admin/results/surveys";
     }
 
     @GetMapping("/results/freeSurvey/{id}")
-    public String freeSurveyResults(@PathVariable Long id) {
+    public String freeSurveyResults(@PathVariable Long id, Model model) {
+        model.addAttribute("result", adminService.findFreeSurveyById(id));
         return "admin/results/freeSurveys";
     }
 

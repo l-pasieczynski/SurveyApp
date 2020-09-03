@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.question;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.surveyapp.survey.Survey;
 
 import java.util.List;
 
