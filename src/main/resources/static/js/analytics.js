@@ -3,12 +3,12 @@ $(function (){
     let pie = document.getElementById('pieChart').getContext('2d');
     let radar = document.getElementById('radarChart').getContext('2d');
 
-    var data1 = 22;
-    var data2 = 23;
-    var data3 = 8;
-    var data4 = 5;
-    var data5 = 11;
-    var data6 = 19;
+    var data1 = Math.floor(Math.random() * 101);
+    var data2 = Math.floor(Math.random() * 101);
+    var data3 = Math.floor(Math.random() * 101);
+    var data4 = Math.floor(Math.random() * 101);
+    var data5 = Math.floor(Math.random() * 101);
+    var data6 = Math.floor(Math.random() * 101);
 
     var myChart = new Chart(ctx, {
         type: 'bar',
