@@ -6,9 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.answer.AnswerService;
+import pl.coderslab.surveyapp.survey.SurveyFacade;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -17,16 +19,16 @@ import java.util.List;
 @RequestMapping("/app/admin")
 public class PdfController {
 
-    private final AnswerService answerService;
+    private final SurveyFacade surveyFacade;
 
-    public PdfController(AnswerService answerService) {
-        this.answerService = answerService;
+    public PdfController(SurveyFacade surveyFacade) {
+        this.surveyFacade = surveyFacade;
     }
 
-    @GetMapping(value = "/results/survey/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> createPdf(){
+    @GetMapping(value = "/results/survey/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> createPdf(@PathVariable Long id){
 
-        List<Answer> results = answerService.findAll();
+        List<Answer> results = surveyFacade.findAllAnswerBySurveyId(id);
 
         ByteArrayInputStream bis = GeneratePdfReport.resultsReport(results);
 

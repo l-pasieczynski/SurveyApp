@@ -82,24 +82,38 @@
                 </tr>
                 <tr>
 
-                    <div class="analytics-div-size" style="margin-right: auto; margin-left: auto">
-                        <canvas id="myChart" class="analytics-canvas-size"></canvas>
-                    </div>
-
-                            <th:block th:each="q : ${result[]}">
-                                <tr class="tab">
-<!--                                <tr><td th:text="${q.questionCount}"></td></tr>-->
-                                </tr>
-                            </th:block>
+                    <th:block th:each="q : ${result}">
+                <tr class="tab">
+                    <!--                                <tr><td th:text="${q.questionCount}"></td></tr>-->
+                </tr>
+                </th:block>
                 </tr>
             </table>
+
+            <div class="analytics-div-size" style="margin-right: auto; margin-left: auto">
+                <canvas id="myChart" class="analytics-canvas-size"></canvas>
+            </div>
+
+            <div class="analytics-div-size" style="margin-right: auto; margin-left: auto">
+                <canvas id="pieChart" class="analytics-canvas-size"></canvas>
+            </div>
+
+            <div class="analytics-div-size" style="margin-right: auto; margin-left: auto">
+                <canvas id="radarChart" class="analytics-canvas-size"></canvas>
+            </div>
 
             <div id="cancel" class="free-survey-table"
                  style="margin: 5px;text-align: center; font-size: 30px; color: red">CANCEL
             </div>
 
-            <div id="pdf" class="free-survey-table"
-                 style="margin: 5px;text-align: center; font-size: 30px; color: lawngreen">CREATE PDF
+            <!--            <div id="pdf" class="free-survey-table"-->
+            <!--                 style="margin: 5px;text-align: center; font-size: 30px; color: lawngreen">CREATE PDF-->
+            <!--            </div>-->
+
+            <div class="free-survey-table">
+                <a style="text-decoration: none" th:href="@{'/app/admin/surveys/pdf/' + ${result.id}}">
+                    <span style="text-align: center; font-size: 40px; color: lawngreen">CREATE PDF</span>
+                </a>
             </div>
 
         </div>
@@ -115,7 +129,7 @@
         });
 
         $("#pdf").on("click", function () {
-            window.location = "/app/admin/surveys/";
+            window.location = "/app/admin/surveys/pdf/{id}";
         });
 
     </script>
