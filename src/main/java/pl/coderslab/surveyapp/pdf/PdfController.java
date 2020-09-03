@@ -23,7 +23,7 @@ public class PdfController {
         this.answerService = answerService;
     }
 
-    @GetMapping(value = "/survey/answer/{id}/results", produces = MediaType.APPLICATION_PDF_VALUE)
+    @GetMapping(value = "/results/survey/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> createPdf(){
 
         List<Answer> results = answerService.findAll();
@@ -38,7 +38,6 @@ public class PdfController {
                 .headers(headers)
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
-
     }
 
 }
