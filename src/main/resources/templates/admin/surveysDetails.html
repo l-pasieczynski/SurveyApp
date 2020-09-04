@@ -85,7 +85,11 @@
                 <tr><td>Question: </td><td></td><td></td></tr>
                 <th:block th:each="q : ${questions}">
                     <tr class="tab">
-                    <tr><td th:text="${q.question}"></td></tr>
+                    <tr>
+                    <td th:text="${q.question}"></td>
+                    <td th:text="${q.questionType}"></td>
+                    <td th:text="${q.query}"></td>
+                </tr>
                     <tr><td th:text="${q.imageQuestion}"></td></tr>
                     </tr>
                 </th:block>
