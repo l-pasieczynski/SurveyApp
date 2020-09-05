@@ -15,7 +15,7 @@ $(function(){
 
         function getSurveyListSuccess(survey){
 
-            let titleDiv = $('<h1 class="survey-title" style="text-align: left">')
+            let titleDiv = $('<h1 class="survey-title" style="text-align: -moz-left">')
             titleDiv.text(survey.name)
             renderingPoint.before(titleDiv)
 
@@ -74,21 +74,61 @@ $(function(){
     submit.on('click',sendResult);
 
     function sendResult(){
+        let survey = function (name,question){
+            this.name=name;
+            this.question=question;
+        }
+        let question = function(question,answer){
+            this.question=question;
+            this.answer=answer;
+        }
+        let answer = function (name){
+            this.name=name;
+        }
+
+
+
+
+
+
         let query = $('h4');
         let radio = $('input:checked');
         let title = $('.survey-title');
-        console.log(title.text());
+
+        let surveySend = new survey();
+        surveySend.name=title;
+
+        console.log(surveySend);
+
+
         query.find('input').each(function (index,element){
 
             if($(element).attr('type')==='text'){
                 console.log($(element).attr('name'));
                 console.log($(element).val());
+
+                let questionText= new question();
+                questionText.question=$(element).attr('name');
+                let answerText= new answer();
+                answerText.name=$(element).val();
+                questionText.answer=answerText;
+
+                surveySend.question+=questionText;
+
             }
         });
 
         radio.each(function (index,element){
             console.log($(element).attr('name'));
             console.log($(element).val());
+
+            let questionRadio= new question();
+            questionRadio.question=$(element).attr('name');
+            let answerRadio= new answer();
+            answerRadio.name=$(element).val();
+            questionRadio.answer=answerRadio;
+
+            surveySend.question+=questionRadio;
 
         });
 
@@ -97,12 +137,6 @@ $(function(){
 
 
     }
-
-
-
-
-
-
 
     function sendGenericRequest(url, type, data, successHandlerFn){
         $.ajax({
