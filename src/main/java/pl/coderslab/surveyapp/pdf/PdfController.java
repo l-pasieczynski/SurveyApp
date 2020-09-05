@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 
@@ -25,6 +26,7 @@ public class PdfController {
     }
 
     @GetMapping(value = "/results/survey/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+
     public ResponseEntity<InputStreamResource> createPdf(@PathVariable Long id){
 
         List<Answer> results = surveyFacade.findAllAnswerBySurveyId(id);

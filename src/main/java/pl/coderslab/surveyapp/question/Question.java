@@ -1,5 +1,7 @@
 package pl.coderslab.surveyapp.question;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +29,10 @@ public class Question {
     private String query;
     private String imageQuestion;
     @ManyToOne
+    @JsonBackReference
     private Survey survey;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    @JsonManagedReference
     private List<Answer> answer;
     private String questionType;
 

@@ -1,5 +1,6 @@
 package pl.coderslab.surveyapp.answer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import pl.coderslab.surveyapp.question.Question;
@@ -24,6 +25,7 @@ public class Answer {
     @NotBlank
     private String answer;
     @ManyToOne
+    @JsonBackReference
     private Question question;
     @ManyToOne
     private User user;
