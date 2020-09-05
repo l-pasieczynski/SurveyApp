@@ -42,40 +42,25 @@
                 </tr>
                 <tr></tr>
                 <tr>
-                    <td th:text="'Quantity of your surveys:' + 0"></td>
-                    <td th:text="'Quantity of your surveys:' + 0"></td>
-                </tr>
-                <tr>
                     <td></td>
                     <td></td>
                 </tr>
             </table>
-            <h4 style="text-align: center">Your last survey</h4>
+            <h4 style="text-align: center">Your surveys</h4>
             <table class="table shadow p-3 mb-5 bg-white rounded">
                 <tr>
                     <td scope="col"> Survey Id </td>
                     <td scope="col"> Survey name </td>
+                    <td scope="col"> Action </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <th:block th:each="survey : ${survey}">
+                    <tr>
+                        <td th:text="${survey.id}"></td>
+                        <td th:text="${survey.name}"></td>
+                        <td><button><a href="/test">Show Survey</a> </button></td>
+                    </tr>
+
+                </th:block>
 
             </table>
         </div>
