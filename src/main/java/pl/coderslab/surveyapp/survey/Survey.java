@@ -1,5 +1,6 @@
 package pl.coderslab.surveyapp.survey;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +38,8 @@ public class Survey {
     @Future
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate expirationDate;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "survey")
+    @JsonManagedReference
     private List<Question> questions;
     @ManyToMany
     private List<User> user;

@@ -10,7 +10,7 @@ $(function(){
         renderSurveyList(form);
     }
     function renderSurveyList(renderingPoint){
-        var url = "http://localhost:8080/survey/rest/getSurvey";
+        let url = "http://localhost:8080/survey/rest/getSurvey";
 
         function getSurveyListSuccess(survey){
 
@@ -21,7 +21,7 @@ $(function(){
             renderingPoint.before(titleDiv)
 
 
-                for( i=0; i<survey.questions.length;i++){
+                for(let i=0; i<survey.questions.length;i++){
                     let  questionsTitle = survey.questions[i].question;
                     let trTitle=$("<tr><th></th></tr>")
                     let questionDiv =$('<h4 class="question-title" style="margin-top: 2%">')
