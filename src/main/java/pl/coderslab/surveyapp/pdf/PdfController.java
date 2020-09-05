@@ -27,7 +27,7 @@ public class PdfController {
         this.generatePdfReport = generatePdfReport;
     }
 
-    @GetMapping(value = "/results/survey/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    @GetMapping(value = "/results/surveys/pdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public String createPdf(@PathVariable Long id, Model model) throws Exception {
 
         List<Answer> results = surveyFacade.findAllAnswerBySurveyId(id);
@@ -36,7 +36,7 @@ public class PdfController {
         data.put("name","James");
         generatePdfReport.createPdf("pdfTemplate",data);
 
-        return "redirect:../results";
+        return "redirect:../";
 
 //                ByteArrayInputStream bis = GeneratePdfReport.resultsReport(results);
 
