@@ -57,7 +57,7 @@
                     <tr>
                         <td th:text="${survey.id}"></td>
                         <td th:text="${survey.name}"></td>
-                        <td><button><a href="/test">Show Survey</a> </button></td>
+                        <td><button><a th:href="@{'/test?id=' + ${survey.id}}">Show survey</a></button></td>
                     </tr>
 
                 </th:block>

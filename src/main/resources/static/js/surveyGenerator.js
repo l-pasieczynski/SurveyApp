@@ -3,7 +3,9 @@ $(function(){
 
     let form = $("#form");
     let table=$("#survey-table");
+    let id = $("#survey-id").text();
     let submit=$('#submit');
+
 
     refreshSurveyList();
 
@@ -11,7 +13,7 @@ $(function(){
         renderSurveyList(form);
     }
     function renderSurveyList(renderingPoint){
-        let url = "http://localhost:8080/survey/rest/getSurvey";
+        let url = "http://localhost:8080/survey/rest/getSurvey/"+id;
 
         function getSurveyListSuccess(survey){
 
