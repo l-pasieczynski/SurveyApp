@@ -11,6 +11,8 @@ import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.survey.SurveyFacade;
 
 import java.io.ByteArrayInputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +33,15 @@ public class PdfController {
     public String createPdf(@PathVariable Long id, Model model) throws Exception {
 
         List<Answer> results = surveyFacade.findAllAnswerBySurveyId(id);
+        LocalDateTime date = LocalDateTime.now();
+
 
         Map<String,String> data = new HashMap<String,String>();
         data.put("name","James");
+        data.put("date", date.toString());
         generatePdfReport.createPdf("pdfTemplate",data);
 
-        return "redirect:../";
+        return "redirect:/app/admin/results";
 
 //                ByteArrayInputStream bis = GeneratePdfReport.resultsReport(results);
 
