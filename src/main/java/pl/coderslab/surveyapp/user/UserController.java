@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.surveyapp.survey.SurveyFacade;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,28 +17,22 @@ import javax.validation.Valid;
 @RequestMapping("/app/user")
 public class UserController {
     private final UserService userService;
-
     private final BCryptPasswordEncoder passwordEncoder;
+    private final SurveyFacade surveyFacade;
 
-    public UserController(UserService userService,  BCryptPasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder, SurveyFacade surveyFacade) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.surveyFacade = surveyFacade;
     }
 
 
-//    @PutMapping("edit/{id}")
-//    public void editUser (@RequestBody User user, @PathVariable Long id) {
-//        userService.fillUserData(user, id);
-//    }
-//
-//    @DeleteMapping("delete/{id}")
-//    public void deleteUser(@PathVariable Long id) {
-//        userService.delete(id);
-//    }
+
 
     @GetMapping("")
     public String userHome(Model m, HttpSession session){
         m.addAttribute("user",userService.findById((Long) session.getAttribute("userId")));
+        m.addAttribute("survey",surveyFacade.findByUsername(userService.findById((Long) session.getAttribute("userId"))));
         return "application/user/user";
     }
 
