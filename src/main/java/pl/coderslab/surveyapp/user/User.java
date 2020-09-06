@@ -1,5 +1,6 @@
 package pl.coderslab.surveyapp.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.surveyapp.role.Role;
@@ -41,7 +42,8 @@ public class User {
     private boolean active;
     private String education;
     private String placeOfLiving;
-    @OneToMany
+    @ManyToMany
+    @JsonBackReference
     private List<Survey> survey;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),

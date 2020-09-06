@@ -40,6 +40,9 @@ public class GeneratePdfReport {
         String fileName = "survey_pdf";
         try {
             final File outputFile = File.createTempFile(fileName, ".pdf");
+            // TODO tworzenie pliku w innym katalogu niż temp
+//            final File outputFile = new File(fileName, ".pdf");
+
             outputStream = new FileOutputStream(outputFile);
 
             ITextRenderer renderer = new ITextRenderer();

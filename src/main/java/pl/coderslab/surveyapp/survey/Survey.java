@@ -41,7 +41,8 @@ public class Survey {
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "survey")
     @JsonManagedReference
     private List<Question> questions;
-    @ManyToMany
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "survey")
     private List<User> user;
 
     @PrePersist
