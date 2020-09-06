@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.RestApi;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.surveyapp.answer.Answer;
@@ -21,10 +22,10 @@ public class SurveyRestController {
         this.surveyFacade = surveyFacade;
     }
 
-    @GetMapping("/getSurvey")
-    public Survey getSurvey(){
+    @GetMapping("/getSurvey/{id}")
+    public Survey getSurvey(@PathVariable Long id){
 
-        Survey survey = surveyFacade.findById(99L);
+        Survey survey = surveyFacade.findById(id);
         List<Question> surveyQuestions = survey.getQuestions();
 
         for(int i = 0;i<surveyQuestions.size();i++){
