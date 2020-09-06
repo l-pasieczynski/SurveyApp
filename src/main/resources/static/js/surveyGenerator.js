@@ -3,6 +3,7 @@ $(function(){
 
     let form = $("#form");
     let table=$("#survey-table");
+    let submit=$('#submit');
 
     refreshSurveyList();
 
@@ -14,14 +15,11 @@ $(function(){
 
         function getSurveyListSuccess(survey){
 
-
-
-            let titleDiv = $('<h1 class="survey-title" style="text-align: left">')
-            titleDiv.text('Survey title : '+ survey.name)
+            let titleDiv = $('<h1 class="survey-title" style="text-align: -moz-left">')
+            titleDiv.text(survey.name)
             renderingPoint.before(titleDiv)
 
-
-                for(let i=0; i<survey.questions.length;i++){
+            for(let i=0; i<survey.questions.length;i++){
                     let  questionsTitle = survey.questions[i].question;
                     let trTitle=$("<tr><th></th></tr>")
                     let questionDiv =$('<h4 class="question-title" style="margin-top: 2%">')
@@ -36,6 +34,7 @@ $(function(){
 
                         let textInput = $('<input style="margin-top: 4%">')
                         textInput.attr('type','text')
+                        textInput.attr('name',questionsTitle);
                         questionDiv.append("<div>");
                         questionDiv.append(textInput);
 
@@ -55,11 +54,10 @@ $(function(){
                             answerInput.attr('id',j+1);
                             answerInput.text(answerTitle)
 
-                            if(questionType === "radio"){
-                                answerInput.attr("name",questionsTitle);
-                            }else{
-                                answerInput.attr("name",answerTitle);
+                            if(questionType === "radio" || questionType === "checkbox") {
+                                answerInput.attr("name", questionsTitle);
                             }
+
                             answerInput.attr("value",answerTitle);
                             questionDiv.append("<div>");
                             questionDiv.append(answerInput).append(answerTitle);
@@ -71,6 +69,73 @@ $(function(){
                 }
         }
         sendGenericRequest(url, "GET", "json", getSurveyListSuccess);
+    }
+
+    submit.on('click',sendResult);
+
+    function sendResult(){
+        let survey = function (name,question){
+            this.name=name;
+            this.question=question;
+        }
+        let question = function(question,answer){
+            this.question=question;
+            this.answer=answer;
+        }
+        let answer = function (name){
+            this.name=name;
+        }
+
+
+
+
+
+
+        let query = $('h4');
+        let radio = $('input:checked');
+        let title = $('.survey-title');
+
+        let surveySend = new survey();
+        surveySend.name=title;
+
+        console.log(surveySend);
+
+
+        query.find('input').each(function (index,element){
+
+            if($(element).attr('type')==='text'){
+                console.log($(element).attr('name'));
+                console.log($(element).val());
+
+                let questionText= new question();
+                questionText.question=$(element).attr('name');
+                let answerText= new answer();
+                answerText.name=$(element).val();
+                questionText.answer=answerText;
+
+                surveySend.question+=questionText;
+
+            }
+        });
+
+        radio.each(function (index,element){
+            console.log($(element).attr('name'));
+            console.log($(element).val());
+
+            let questionRadio= new question();
+            questionRadio.question=$(element).attr('name');
+            let answerRadio= new answer();
+            answerRadio.name=$(element).val();
+            questionRadio.answer=answerRadio;
+
+            surveySend.question+=questionRadio;
+
+        });
+
+        return false
+
+
+
     }
 
     function sendGenericRequest(url, type, data, successHandlerFn){
