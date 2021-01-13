@@ -9,7 +9,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../../js/applications.js"></script>
+<!--    <script type="text/javascript" src="../../js/applications.js"></script>-->
+<script type="text/javascript" th:src="@{/js/applications.js}"></script>
 
 </head>
 
@@ -19,7 +20,7 @@
         <a class="logo" href="/"><img th:src="@{/images/logo.png}"  width="300" height="60" alt="Survey Application"></a>
         <div class="d-flex justify-content-around">
 
-            <h4 class="text-light mr-3 username" th:text="${#authentication.principal.Username}" ></h4>
+            <h4 class="text-light mr-3 username" th:text="${#authentication.getPrincipal().getUsername()}" ></h4>
             <div class="nav-item menu" sec:authorize="isAuthenticated()">
                 <button class="btn btn-color"><a th:href="@{/logout}">Sign Out</a></button>
             </div>
@@ -32,39 +33,39 @@
     <div class="row dashboard-nowrap float-left">
         <ul class="nav flex-column long-bg">
             <li id="menu">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/app/home">
                     <span>Menu</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <ul>
                 <li class=" xxx show-menu">
-                    <a class="nav-link" href="/user/">
+                    <a class="nav-link" href="/app/user/">
                         <span>User</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>
                 <li class=" xxx show-menu">
-                    <a class="nav-link" href="/app-schedules.html">
+                    <a class="nav-link" href="/app/admin/home">
                         <span>Admin</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>
                 <li class=" xxx show-menu">
-                    <a class="nav-link" href="/app-edit-user-data.html">
-                        <span>Menu 3</span>
+                    <a class="nav-link" href="/app/user/team">
+                        <span>Team</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>
                 <li class=" xxx show-menu">
                     <a class="nav-link disabled" href="/app-edit-password.html">
-                        <span>Menu 4</span>
+                        <span>Goals</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>
                 <li class=" xxx show-menu">
-                    <a class="nav-link" href="/super-admin-users.html">
-                        <span>Menu 5</span>
+                    <a class="nav-link" href="/app/user/calendar">
+                        <span>Calendar</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>

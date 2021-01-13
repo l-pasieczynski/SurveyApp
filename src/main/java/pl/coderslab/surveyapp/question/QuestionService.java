@@ -1,6 +1,7 @@
 package pl.coderslab.surveyapp.question;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.surveyapp.survey.Survey;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public class QuestionService {
     public void save(List<Question> question) {
         question.forEach(questionRepository::save);
     }
+    public void saveQuestion(Question question) {questionRepository.save(question);}
+    public Question findByQuestion(String question){return questionRepository.findByQuestion(question);}
 }

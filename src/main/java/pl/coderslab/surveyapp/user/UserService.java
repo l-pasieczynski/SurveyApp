@@ -1,5 +1,7 @@
 package pl.coderslab.surveyapp.user;
 
+import pl.coderslab.surveyapp.survey.Survey;
+
 import java.util.List;
 
 public interface UserService {
@@ -20,7 +22,11 @@ public interface UserService {
 
     List<String> findAllUsersEmailAddresses();
 
+    void updateUser(User user);
+
     List<User> findAllByRequestParam(UserSearch userSearch);
 
     void deactivate(Long id);
+
+
 }

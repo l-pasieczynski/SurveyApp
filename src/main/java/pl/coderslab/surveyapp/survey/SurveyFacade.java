@@ -5,6 +5,7 @@ import pl.coderslab.surveyapp.answer.Answer;
 import pl.coderslab.surveyapp.answer.AnswerService;
 import pl.coderslab.surveyapp.question.Question;
 import pl.coderslab.surveyapp.question.QuestionService;
+import pl.coderslab.surveyapp.user.User;
 
 import java.util.List;
 
@@ -47,9 +48,7 @@ public class SurveyFacade {
     }
 
     public void deactivateFreeSurvey(Long id) {
-        FreeSurvey freeSurveyToDeactivate = findFreeSurveyById(id);
-        freeSurveyToDeactivate.setActive(false);
-        freeSurveyService.save(freeSurveyToDeactivate);
+        freeSurveyService.deactivate(id);
     }
 
 
@@ -68,12 +67,35 @@ public class SurveyFacade {
 
 
     public void deactivate(Long id) {
-        Survey surveyToDeactivate = surveyService.findById(id);
-        surveyToDeactivate.setActive(false);
-        surveyService.save(surveyToDeactivate);
+        surveyService.deactivate(id);
     }
 
     public void delete(Long id) {
         surveyService.delete(id);
+    }
+
+
+    public List<Survey> findByUsername(User user) {
+        return surveyService.findByUser(user);
+    }
+
+    public List<Question> findFreeSurveyQuestionList(Long id) {
+        return freeSurveyService.getQuestionList(id);
+    }
+
+    public List<Question> findSurveyQuestionList(Long id) {
+        return surveyService.getQuestionList(id);
+    }
+
+    public List<User> getSurveyUsers(Long id) {
+        return surveyService.getAllUsers(id);
+    }
+
+    Survey findBySurveyName(String name){return surveyService.findBySurveyName(name);}
+
+    public List<Answer> findAllAnswerBySurveyId(Long id) {
+        Survey byId = surveyService.findById(id);
+        List<Question> questions = byId.getQuestions();
+        return answerService.findAllByQuestion(questions);
     }
 }

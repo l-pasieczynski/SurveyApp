@@ -80,4 +80,21 @@ class AdminService {
     public void createSurvey(Survey survey, List<Question> question) {
         surveyFacade.saveSurvey(survey, question);
     }
+
+    public List<Survey> findSurveysByUser(User user) {
+        User byId = userService.findById(user.getId());
+        return byId.getSurvey();
+    }
+
+    public List<Question> getFreSurveyQuestionList(Long id) {
+        return surveyFacade.findFreeSurveyQuestionList(id);
+    }
+
+    public List<Question> getSurveyQuestionList(Long id) {
+        return surveyFacade.findSurveyQuestionList(id);
+    }
+
+    public List<User> getSurveyUsers(Long id) {
+        return surveyFacade.findById(id).getUser();
+    }
 }

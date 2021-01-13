@@ -80,4 +80,8 @@ class HomeController {
         System.out.println(user);
         return "login";
     }
+    @GetMapping("/test")
+    public String test(){
+        return ("surveyTest/survey-generator");
+    }
 }

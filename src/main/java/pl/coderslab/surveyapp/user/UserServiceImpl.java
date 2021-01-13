@@ -80,6 +80,15 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUser(User user) {
+        user.setPassword(user.getPassword());
+        user.setActive(true);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
+    }
+
+    @Override
     public List<User> findAllByRequestParam(UserSearch userSearch) {
 
         //TODO obsługa age
@@ -98,7 +107,11 @@ class UserServiceImpl implements UserService {
     @Override
     public void deactivate(Long id) {
         User userToDeactivate = userRepository.getOne(id);
-        userToDeactivate.setActive(false);
+        if (userToDeactivate.isActive()){
+            userToDeactivate.setActive(false);
+        } else {
+            userToDeactivate.setActive(true);
+        }
         userRepository.save(userToDeactivate);
     }
 

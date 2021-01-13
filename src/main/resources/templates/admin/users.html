@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="application/fragments-app/app-header">
+
+
+    <div class="content-line-app" th:fragment="user-menu">
+        <nav class="navbar-app navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-app">
+                <ul class="navbar-nav">
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/surveys}">Surveys</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/freeSurveys}">Free Surveys</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/users}">Users</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/results}">Results</a>
+                    </li>
+                    <li class="nav-item menu">
+                        <a class="nav-link" th:href="@{/app/admin/email}">Mailbox</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        <div class="border-3">
+            <h2 style="text-align: center; font-weight: bold; color: #005eff; margin-bottom: 5px">Users</h2>
+
+            <form class="form-inline my-2 my-lg-0" th:object="${search}" method="get" th:action="@{/app/admin/users/search}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <br>
+            <table class="table shadow p-3 mb-5 bg-white rounded" >
+
+                <tr class="tab">
+                    <td scope="col">Username</td>
+                    <td scope="col" >Email</td>
+                    <td scope="col" >Balance</td>
+                    <td scope="col">Active</td>
+                    <td scope="col">Education</td>
+                    <td scope="col">Place of Living</td>
+                    <td scope="col">Action</td>
+                </tr>
+                <th:block th:each="user : ${users}">
+                    <tr class="tab">
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.accountBalance}"></td>
+                        <td th:text="${user.active}"></td>
+                        <td th:text="${user.education}"></td>
+                        <td th:text="${user.placeOfLiving}"></td>
+                        <td>
+                            <button class="form submit" style="margin: 5px;">
+                                <a th:href="@{'/app/admin/users/' + ${user.id}}">
+                                <span>Details</span>
+                                </a>
+                            </button>
+                            <form method="POST" th:action="@{'/app/admin/users/deactivate/' +${user.id}}">
+                                <button type="submit" style="margin: 5px" class="form submit">Deactivate</button>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+    <div th:include="application/fragments-app/app-footer"></div>

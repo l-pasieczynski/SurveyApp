@@ -1,5 +1,6 @@
 package pl.coderslab.surveyapp.survey;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,9 +38,11 @@ public class Survey {
     @Future
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate expirationDate;
-    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
-    private List<Question> questions = new ArrayList<Question>();
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "survey")
+    @JsonManagedReference
+    private List<Question> questions;
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "survey")
     private List<User> user;
 
     @PrePersist
@@ -51,4 +54,8 @@ public class Survey {
     public Survey() {
     }
 
+    public Survey setQuestions(List<Question> questions) {
+        this.questions = questions;
+        return this;
+    }
 }
